@@ -13,6 +13,10 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayer;
     public float rayLength = 0.1f;
 
+    [Header("Animation")]
+    private Animator animator;
+    public float walkAnimationSpeedMultiplier = 4f;
+
     private Rigidbody2D rb;
     private bool isGrounded;
     private float coyoteTimeCounter;
@@ -23,6 +27,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -35,6 +40,14 @@ public class PlayerController : MonoBehaviour
     {
         float horizontal = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(horizontal * moveSpeed, rb.velocity.y);
+        if(Mathf.Abs(rb.velocity.x) > 0.01f && isGrounded)
+        {
+            animator.speed = walkAnimationSpeedMultiplier;
+        }
+        else
+        {
+            animator.speed = 1;
+        }
 
         if (horizontal > 0 && !facingRight)
         {
@@ -48,7 +61,9 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
+        animator.SetFloat("Vertical", Mathf.Abs(rb.velocity.y));
         isGrounded = IsGrounded();
+        animator.SetBool("isGrounded", isGrounded);
 
         if (isGrounded)
         {

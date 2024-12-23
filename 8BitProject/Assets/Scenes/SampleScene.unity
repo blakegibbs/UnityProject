@@ -205,12 +205,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1809668636}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &519420033
 MonoBehaviour:
@@ -1846,6 +1846,7 @@ Transform:
   m_Children:
   - {fileID: 1144523125}
   - {fileID: 1868343513}
+  - {fileID: 519420032}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1809668637
@@ -1895,8 +1896,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7202c957802b22f479af447a7d9cb9dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  jumpForce: 12
+  moveSpeed: 6
+  jumpForce: 15
   coyoteTime: 0.2
   jumpBufferTime: 0.2
   groundCheckCollider: {fileID: 1868343514}
@@ -1904,6 +1905,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   rayLength: 0.1
+  walkAnimationSpeedMultiplier: 4
 --- !u!50 &1809668640
 Rigidbody2D:
   serializedVersion: 4
@@ -1919,7 +1921,7 @@ Rigidbody2D:
   m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0
-  m_GravityScale: 1
+  m_GravityScale: 5
   m_Material: {fileID: 6200000, guid: a303c48bf878856479db0ebc8ee5a8fc, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -2211,7 +2213,6 @@ Rigidbody2D:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 519420032}
   - {fileID: 1809668636}
   - {fileID: 1526238738}
   - {fileID: 1233382374}
