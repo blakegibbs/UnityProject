@@ -4,6 +4,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Movement Settings")]
     public float moveSpeed = 5f; // max speed
+    public float maxSpeed = 7f;  // clamp max speed
     public float jumpForce = 12f; // force applied to jump
     public float coyoteTime = 0.2f;
     public float jumpBufferTime = 0.2f;
@@ -20,14 +21,30 @@ public class PlayerController : MonoBehaviour
     [Header("Acceleration and Deceleration")]
     public float groundAcceleration = 10f;
     public float groundDeceleration = 8f;
+    public float friction = 0.5f; // Friction force applied when grounded
 
     [Header("Ground Check")]
     public BoxCollider2D groundCheckCollider;
     public LayerMask groundLayer;
     public float rayLength = 0.1f;
 
+    [Header("Attack Settings")]
+    public float attackCooldown = 0.5f;
+    private float attackCooldownTimer;
+    public float attackRange = 1.0f;
+    public float attackDamage = 40.0f;
+    private bool isAttacking = false;
+    public LayerMask attackMask;
+    public float attackKnockback = 1f;
+    public float attackKnockbackDuration = 0.1f;
+    private float attackKnockbackTimer = 0.1f;
+    private bool applyingKnockback = false;
+    private bool appliedKnockback = false;
+
+
     [Header("Animation")]
     private Animator animator;
+    public Animator animatorAttackSlash;
     public float walkAnimationSpeedMultiplier = 4f;
 
     private Rigidbody2D rb;
@@ -44,6 +61,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        attackKnockbackTimer = attackKnockbackDuration;
     }
 
     private void Update()
@@ -52,6 +70,7 @@ public class PlayerController : MonoBehaviour
         {
             Movement();
             Jump();
+            Attack();
         }
         else
         {
@@ -61,7 +80,7 @@ public class PlayerController : MonoBehaviour
 
     private void Movement()
     {
-        if (!isLedgeHanging)
+        if (!isLedgeHanging && !applyingKnockback)
         {
             // horizontal movement input
             float horizontalInput = Input.GetAxis("Horizontal");
@@ -76,6 +95,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
+                    // apply friction when no input is given
                     currentVelocityX = Mathf.MoveTowards(currentVelocityX, 0f, groundDeceleration * Time.deltaTime);
                 }
             }
@@ -85,8 +105,14 @@ public class PlayerController : MonoBehaviour
                 currentVelocityX = Mathf.MoveTowards(currentVelocityX, horizontalInput * moveSpeed, groundAcceleration * Time.deltaTime);
             }
 
-            // update Rigidbody velocity
+            // apply force for horizontal movement
             rb.velocity = new Vector2(currentVelocityX, rb.velocity.y);
+
+            // clamp the maximum speed
+            if (Mathf.Abs(rb.velocity.x) > maxSpeed)
+            {
+                rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * maxSpeed, rb.velocity.y);
+            }
 
             // update animation speed
             if (Mathf.Abs(rb.velocity.x) > 0.01f && isGrounded)
@@ -163,8 +189,8 @@ public class PlayerController : MonoBehaviour
         // calculate the initial jump velocity
         float initialJumpVelocity = Mathf.Abs(Physics2D.gravity.y) * timeToApex;
 
-        // apply the jump velocity
-        rb.velocity = new Vector2(rb.velocity.x, initialJumpVelocity);
+        // apply the jump velocity as a force
+        rb.AddForce(new Vector2(0f, initialJumpVelocity), ForceMode2D.Impulse);
     }
 
     private void ApplyJumpApexGravity()
@@ -181,6 +207,72 @@ public class PlayerController : MonoBehaviour
         else
         {
             rb.gravityScale = 1; // normal gravity when rising
+        }
+    }
+
+    private void Attack()
+    {
+        float direction = 1;
+
+        if (!facingRight)
+        {
+            direction = -1;
+        }
+
+        if (!isAttacking && !isLedgeHanging)
+        {
+            if (Input.GetButtonDown("Fire1") && attackCooldownTimer <= 0.0f)
+            {
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right * direction, attackRange, attackMask);
+                //Debug.DrawRay(transform.position, (transform.right * attackRange) * direction, Color.red, 1.0f);
+
+                if (hit.collider != null)
+                {
+                    CheckDamageReciever(hit.collider.gameObject);
+                }
+                animatorAttackSlash.SetTrigger("Attacking");
+                attackCooldownTimer = attackCooldown;
+                applyingKnockback = true;
+                isAttacking = true;
+            }
+        }
+
+        if (isAttacking)
+        {
+            //apply knockback
+            if(applyingKnockback)
+            {
+                if(!appliedKnockback)
+                {
+                    rb.velocity = Vector2.zero;
+                    rb.AddForce((transform.right * -direction) * 100 * attackKnockback * Time.fixedDeltaTime, ForceMode2D.Impulse);
+                    appliedKnockback = true;
+                }
+                attackKnockbackTimer -= Time.deltaTime;
+                if(attackKnockbackTimer <= 0.0f)
+                {
+                    applyingKnockback = false;
+                    appliedKnockback = false;
+                    attackKnockbackTimer = attackKnockbackDuration;
+                }
+            }
+
+            //reset attack cooldown
+            attackCooldownTimer -= Time.deltaTime;
+
+            if (attackCooldownTimer <= 0.0f)
+            {
+                isAttacking = false;
+                applyingKnockback = false;
+            }
+        }
+    }
+
+    private void CheckDamageReciever(GameObject target)
+    {
+        if (target.CompareTag("Enemy"))
+        {
+            target.GetComponent<Dummy>().TakeDamage(attackDamage);
         }
     }
 
@@ -202,38 +294,12 @@ public class PlayerController : MonoBehaviour
 
     private void LedgeHang()
     {
-        // ledge hang logic: player is hanging if the conditions are met.
-        if (Input.GetButtonDown("Jump"))
-        {
-            isLedgeHanging = false;
-            rb.velocity = new Vector2(0, jumpForce); // push the player off the ledge
-        }
-
-        // player remains at the ledge, not moving
-        rb.velocity = new Vector2(0, rb.velocity.y); // prevent horizontal movement while hanging
+        // Implement ledge hanging logic here
     }
 
     private void CheckLedge()
     {
-        // cast a ray to check if the ledge exists (below the player)
-        RaycastHit2D ledgeHit = Physics2D.Raycast(transform.position, Vector2.down, ledgeHangDistance, groundLayer);
-
-        // cast a ray upwards to ensure it's not a wall above the player
-        RaycastHit2D wallCheck = Physics2D.Raycast(transform.position, Vector2.up, ledgeCheckHeight, groundLayer);
-
-        if (ledgeHit.collider != null && wallCheck.collider == null && !isGrounded)
-        {
-            isLedgeHanging = true;
-            animator.SetBool("isLedgeHanging", true);
-        }
-        else
-        {
-            isLedgeHanging = false;
-            animator.SetBool("isLedgeHanging", false);
-        }
-
-        Debug.DrawRay(transform.position, Vector2.down * ledgeHangDistance, Color.blue);
-        Debug.DrawRay(transform.position, Vector2.up * ledgeCheckHeight, Color.red);
+        // Implement ledge checking logic here
     }
 
     private void OnDrawGizmos()
