@@ -272,7 +272,7 @@ public class PlayerController : MonoBehaviour
     {
         if (target.CompareTag("Enemy"))
         {
-            target.GetComponent<Dummy>().TakeDamage(attackDamage);
+            target.GetComponent<Dummy>().TakeDamage(attackDamage, facingRight);
         }
     }
 

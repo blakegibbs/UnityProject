@@ -4475,7 +4475,7 @@ MonoBehaviour:
     m_Bits: 8
   rayLength: 0.1
   attackCooldown: 0.5
-  attackRange: 3
+  attackRange: 0.9
   attackDamage: 40
   attackMask:
     serializedVersion: 2
