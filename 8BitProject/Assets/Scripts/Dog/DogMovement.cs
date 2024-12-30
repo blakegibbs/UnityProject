@@ -8,7 +8,7 @@ public class DogMovement : MonoBehaviour
     public float moveSpeed;
     public float targetDistance;
     public float moveDelay;
-    public Transform target; // The player transform
+    public Transform target;
     public float timeUntilIdle;
 
     [Header("References")]
@@ -57,6 +57,7 @@ public class DogMovement : MonoBehaviour
 
                     transform.position = newPosition;
                     animator.SetBool("Idle", false);
+                    animator.SetBool("Moving", true);
                     animator.speed = walkAnimationSpeedMultiplier;
 
                     if ((direction.x > 0 && !facingRight) || (direction.x < 0 && facingRight))
@@ -70,13 +71,15 @@ public class DogMovement : MonoBehaviour
             }
             else
             {
+                animator.SetBool("Moving", false);
+                animator.speed = 1;
+
                 moveDelayTimer = 0f;
 
                 idleTimer += Time.deltaTime;
 
                 if (idleTimer >= timeUntilIdle)
                 {
-                    animator.speed = 1;
                     animator.SetBool("Idle", true);
                     isMoving = false;
                 }
