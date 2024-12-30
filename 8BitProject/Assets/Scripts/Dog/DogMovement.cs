@@ -11,6 +11,9 @@ public class DogMovement : MonoBehaviour
     public Transform target;
     public float timeUntilIdle;
 
+    [Header("Jump")]
+    public float jumpForce;
+
     [Header("References")]
     private Transform player;
     private bool facingRight = true;
@@ -23,15 +26,20 @@ public class DogMovement : MonoBehaviour
     public Collider2D groundCheckCollider;
     public LayerMask groundLayer;
     public float rayLength = 0.1f;
+    private bool isNearDrop = false;
+    public float dropOffThreshold = 2;
 
     private float idleTimer = 0f;
     private float moveDelayTimer = 0f;
     private bool isMoving = false;
 
+    private Rigidbody2D rb;
+
     private void Start()
     {
         animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
@@ -43,27 +51,25 @@ public class DogMovement : MonoBehaviour
 
     private void Move()
     {
+        float horizontalDistanceToTarget = target.position.x - transform.position.x;
+        float verticalDistanceToTarget = target.position.y - transform.position.y;
         if (target != null)
         {
-            float distanceToTarget = Vector2.Distance(transform.position, target.position);
-
-            if (distanceToTarget > targetDistance)
+            // Horizontal Movement
+            if (Mathf.Abs(horizontalDistanceToTarget) > targetDistance && !isNearDrop)
             {
                 moveDelayTimer += Time.deltaTime;
                 if (moveDelayTimer >= moveDelay)
                 {
-                    Vector2 direction = (target.position - transform.position).normalized;
-                    Vector2 newPosition = Vector2.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
+                    // Move horizontally
+                    Vector2 newPosition = new Vector2(Mathf.MoveTowards(transform.position.x, target.position.x, moveSpeed * Time.deltaTime), transform.position.y);
 
                     transform.position = newPosition;
                     animator.SetBool("Idle", false);
                     animator.SetBool("Moving", true);
                     animator.speed = walkAnimationSpeedMultiplier;
 
-                    if ((direction.x > 0 && !facingRight) || (direction.x < 0 && facingRight))
-                    {
-                        Flip();
-                    }
+   
 
                     idleTimer = 0f;
                     isMoving = true;
@@ -71,11 +77,13 @@ public class DogMovement : MonoBehaviour
             }
             else
             {
+                // Stop horizontal movement
                 animator.SetBool("Moving", false);
                 animator.speed = 1;
 
                 moveDelayTimer = 0f;
 
+                // Start idle timer
                 idleTimer += Time.deltaTime;
 
                 if (idleTimer >= timeUntilIdle)
@@ -85,13 +93,46 @@ public class DogMovement : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            animator.SetBool("Idle", true);
+        }
+
+        if ((horizontalDistanceToTarget > 0 && !facingRight) || (horizontalDistanceToTarget < 0 && facingRight))
+        {
+            Flip();
+        }
+    }
+
+    private void Jump()
+    {
+        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        animator.SetTrigger("Jump");
     }
 
     private void CheckSurroundings()
     {
+        Vector2 rayPosition = Vector2.zero;
         RaycastHit2D wallCheckerHit = Physics2D.Raycast(transform.position, Vector2.right, 10, groundLayer);
-        Vector2 rayPosition = new Vector2(transform.position.x + 1, transform.position.y);
-        RaycastHit2D floorCheckerHit = Physics2D.Raycast(rayPosition, Vector2.up, 10, groundLayer);
+        if (facingRight)
+        {
+            rayPosition = new Vector2(transform.position.x + 1, transform.position.y);
+
+        }
+        else
+        {
+            rayPosition = new Vector2(transform.position.x + -1, transform.position.y);
+        }
+        RaycastHit2D floorCheckerHit = Physics2D.Raycast(rayPosition, -Vector2.up, 10, groundLayer);
+
+        if(floorCheckerHit.distance >= dropOffThreshold)
+        {
+            isNearDrop = true;
+        }
+        else
+        {
+            isNearDrop = false;
+        }
     }
 
     private bool IsGrounded()
