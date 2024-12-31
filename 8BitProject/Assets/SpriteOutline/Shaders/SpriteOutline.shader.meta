@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 62505ee61d20098489c6f861ed25cce1
+AssetOrigin:
+  serializedVersion: 1
+  productId: 109669
+  packageName: 2D Sprite Outline
+  packageVersion: 1.1
+  assetPath: Assets/SpriteOutline/Shaders/SpriteOutline.shader
+  uploadId: 235929
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _MainTex: {instanceID: 0}
+  - _FrameTex: {instanceID: 0}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
