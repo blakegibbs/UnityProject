@@ -21,12 +21,15 @@ public class FallingPlatform : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        activated = true;
+        if (collision.transform.CompareTag("Player"))
+        {
+            activated = true;
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (resetTimer)
+        if (resetTimer && collision.transform.CompareTag("Player"))
         {
             activated = false;
         }
