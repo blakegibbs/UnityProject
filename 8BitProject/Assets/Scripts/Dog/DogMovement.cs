@@ -123,7 +123,7 @@ public class DogMovement : MonoBehaviour
         {
             rayPosition = new Vector2(transform.position.x + -1, transform.position.y);
         }
-        RaycastHit2D floorCheckerHit = Physics2D.Raycast(rayPosition, -Vector2.up, 10, groundLayer);
+        RaycastHit2D floorCheckerHit = Physics2D.Raycast(rayPosition, -Vector2.up, 100, groundLayer);
 
         if(floorCheckerHit.distance >= dropOffThreshold)
         {

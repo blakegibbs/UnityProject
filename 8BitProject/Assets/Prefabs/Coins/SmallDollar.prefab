@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1250757525159839538}
   - component: {fileID: 3806764418354073586}
   - component: {fileID: 1057092446780516362}
+  - component: {fileID: 8872652966626049151}
   m_Layer: 0
   m_Name: SmallDollar
   m_TagString: Untagged
@@ -198,3 +199,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 5
+--- !u!114 &8872652966626049151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3020797094112782919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4218d78ef2d54d0898b7514e121a781f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _color: {r: 0, g: 0, b: 0, a: 1}

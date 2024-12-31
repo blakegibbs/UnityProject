@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2922358098640444973}
   - component: {fileID: 6737487578595673611}
   - component: {fileID: 5976371000948632519}
+  - component: {fileID: 5003362988668118099}
   m_Layer: 0
   m_Name: Dollar
   m_TagString: Untagged
@@ -198,3 +199,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 10
+--- !u!114 &5003362988668118099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1416317971622378603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4218d78ef2d54d0898b7514e121a781f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _color: {r: 0, g: 0, b: 0, a: 1}
