@@ -7,14 +7,14 @@ public class CoinCollect : MonoBehaviour
     public int coinValue = 1;
     private bool inDogsMouth = false;
     private Transform dog;
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.transform.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            other.transform.GetComponent<PlayerInventory>().AddMoney(coinValue);
+            other.GetComponentInParent<PlayerInventory>().AddMoney(coinValue);
             Destroy(gameObject);
         }
-        else if (other.transform.CompareTag("Dog"))
+        else if (other.CompareTag("Dog"))
         {
             inDogsMouth = true;
             dog = other.transform;
