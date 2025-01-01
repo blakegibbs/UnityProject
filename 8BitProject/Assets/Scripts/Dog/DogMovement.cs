@@ -106,14 +106,17 @@ public class DogMovement : MonoBehaviour
 
     private void Jump()
     {
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-        animator.SetTrigger("Jump");
+        if (IsGrounded())
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            animator.SetTrigger("Jump");
+        }
     }
 
     private void CheckSurroundings()
     {
         Vector2 rayPosition = Vector2.zero;
-        RaycastHit2D wallCheckerHit = Physics2D.Raycast(transform.position, Vector2.right, 10, groundLayer);
+        Vector2 wallRayPosition = Vector2.zero;
         if (facingRight)
         {
             rayPosition = new Vector2(transform.position.x + 1, transform.position.y);
@@ -123,6 +126,10 @@ public class DogMovement : MonoBehaviour
         {
             rayPosition = new Vector2(transform.position.x + -1, transform.position.y);
         }
+
+        wallRayPosition = new Vector2(rayPosition.x, rayPosition.y - 0.15f);
+        RaycastHit2D wallCheckerHit = Physics2D.Raycast(wallRayPosition, Vector2.right, 10, groundLayer);
+
         RaycastHit2D floorCheckerHit = Physics2D.Raycast(rayPosition, -Vector2.up, 100, groundLayer);
 
         if(floorCheckerHit.distance >= dropOffThreshold)
@@ -132,6 +139,11 @@ public class DogMovement : MonoBehaviour
         else
         {
             isNearDrop = false;
+        }
+
+        if(wallCheckerHit.distance < 2 && wallCheckerHit.transform != null)
+        {
+            Jump();
         }
     }
 

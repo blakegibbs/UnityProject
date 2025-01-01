@@ -9152,6 +9152,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1809668636}
     - target: {fileID: 2604181005120535017, guid: 0e90aefb941dbc2409144ab435056645, type: 3}
+      propertyPath: jumpForce
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2604181005120535017, guid: 0e90aefb941dbc2409144ab435056645, type: 3}
       propertyPath: dropOffThreshold
       value: 10
       objectReference: {fileID: 0}
