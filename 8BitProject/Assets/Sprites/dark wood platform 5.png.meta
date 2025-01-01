@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b5bd666032e64b34dbd92d875bf292df
+guid: 387da2dc1340efe4db2e5bd98abb1c09
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5260669496413270551
-    second: LargeTree_0
+      213: -4630631119214421903
+    second: dark wood platform 5_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: LargeTree_0
+      name: dark wood platform 5_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 27
-        height: 126
+        x: 16
+        y: 2
+        width: 11
+        height: 7
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -114,8 +114,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7123276e807a10940800000000000000
-      internalID: 5260669496413270551
+      spriteID: 178da5df781bcbfb0800000000000000
+      internalID: -4630631119214421903
       vertices: []
       indices: 
       edges: []
@@ -131,7 +131,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      LargeTree_0: 5260669496413270551
+      dark wood platform 5_0: -4630631119214421903
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

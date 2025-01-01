@@ -1,25 +1,19 @@
 fileFormatVersion: 2
-guid: 122b9c4e5ed28074b926c1cc5bec7fb9
+guid: f3cf6f21b43b64b43867b2eb66075827
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6910963273591552302
-    second: Dummy-Sheet_0
+      213: -4518302543605216317
+    second: attack-Sheet_0
   - first:
-      213: 4748836245484727720
-    second: Dummy-Sheet_1
+      213: -1461705153809937357
+    second: attack-Sheet_1
   - first:
-      213: -5843657302234825881
-    second: Dummy-Sheet_2
+      213: -5254297954493108069
+    second: attack-Sheet_2
   - first:
-      213: 6037593939225415191
-    second: Dummy-Sheet_3
-  - first:
-      213: 6338578342198593819
-    second: Dummy-Sheet_4
-  - first:
-      213: -5556069547510464485
-    second: Dummy-Sheet_5
+      213: 427998804050586947
+    second: attack-Sheet_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -115,7 +109,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Dummy-Sheet_0
+      name: attack-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -129,14 +123,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2d60ecdb4835710a0800000000000000
-      internalID: -6910963273591552302
+      spriteID: 3cbcaac86c3cb41c0800000000000000
+      internalID: -4518302543605216317
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dummy-Sheet_1
+      name: attack-Sheet_1
       rect:
         serializedVersion: 2
         x: 10
@@ -150,14 +144,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8aded94a76147e140800000000000000
-      internalID: 4748836245484727720
+      spriteID: 33c0dc438eaf6bbe0800000000000000
+      internalID: -1461705153809937357
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dummy-Sheet_2
+      name: attack-Sheet_2
       rect:
         serializedVersion: 2
         x: 20
@@ -171,14 +165,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 76bfc2705a827eea0800000000000000
-      internalID: -5843657302234825881
+      spriteID: b90706e49dbf417b0800000000000000
+      internalID: -5254297954493108069
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dummy-Sheet_3
+      name: attack-Sheet_3
       rect:
         serializedVersion: 2
         x: 30
@@ -192,50 +186,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 71e059df2b7d9c350800000000000000
-      internalID: 6037593939225415191
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dummy-Sheet_4
-      rect:
-        serializedVersion: 2
-        x: 40
-        y: 0
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b194bb34b6727f750800000000000000
-      internalID: 6338578342198593819
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dummy-Sheet_5
-      rect:
-        serializedVersion: 2
-        x: 50
-        y: 0
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b1006411f20e4e2b0800000000000000
-      internalID: -5556069547510464485
+      spriteID: 34d2ab705ae80f500800000000000000
+      internalID: 427998804050586947
       vertices: []
       indices: 
       edges: []
@@ -243,7 +195,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 6c83f6d015026a249834bb532ec305a0
+    spriteID: 804d6343c6d98b44e8a7af11cc52ba8c
     internalID: 0
     vertices: []
     indices: 
@@ -251,12 +203,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Dummy-Sheet_0: -6910963273591552302
-      Dummy-Sheet_1: 4748836245484727720
-      Dummy-Sheet_2: -5843657302234825881
-      Dummy-Sheet_3: 6037593939225415191
-      Dummy-Sheet_4: 6338578342198593819
-      Dummy-Sheet_5: -5556069547510464485
+      attack-Sheet_0: -4518302543605216317
+      attack-Sheet_1: -1461705153809937357
+      attack-Sheet_2: -5254297954493108069
+      attack-Sheet_3: 427998804050586947
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

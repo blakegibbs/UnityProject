@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9bbfad566da378142b428d5bc8403417
+guid: b141c989458e2ef43b80413ef9bc62b6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5212806505647604513
-    second: Lift_0
+      213: 503174978882661596
+    second: Wagon_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Lift_0
+      name: Wagon_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 17
-        height: 16
+        width: 34
+        height: 18
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -114,8 +114,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fdc770c0a1468a7b0800000000000000
-      internalID: -5212806505647604513
+      spriteID: cdc6a243af2abf600800000000000000
+      internalID: 503174978882661596
       vertices: []
       indices: 
       edges: []
@@ -131,7 +131,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Lift_0: -5212806505647604513
+      Wagon_0: 503174978882661596
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

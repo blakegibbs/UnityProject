@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 645d2d96945a77244bcd9ebcc5b60494
+guid: f43b5d68a5e0e8247800df9a2b3beab6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -885417834417882878
-    second: Welcome Sign_0
+      213: 1154040507209014299
+    second: small platform 4_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Welcome Sign_0
+      name: small platform 4_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 15
-        height: 13
+        x: 16
+        y: 3
+        width: 11
+        height: 6
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -114,8 +114,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 209f9b5bb2d56b3f0800000000000000
-      internalID: -885417834417882878
+      spriteID: b1cda981ab9f30010800000000000000
+      internalID: 1154040507209014299
       vertices: []
       indices: 
       edges: []
@@ -131,7 +131,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Welcome Sign_0: -885417834417882878
+      small platform 4_0: 1154040507209014299
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

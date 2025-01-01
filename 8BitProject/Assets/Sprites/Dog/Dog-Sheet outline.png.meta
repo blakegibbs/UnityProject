@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: 071b9a3ee9526e940a60dfec9556934b
+guid: 5169154dc9d7ed3468e104f2e1cf59f6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3042775341902697147
-    second: Coin-Sheet_0
+      213: 3389364481336101300
+    second: Dog-Sheet outline_0
+  - first:
+      213: 727708397936434142
+    second: Dog-Sheet outline_1
+  - first:
+      213: -485727657856575172
+    second: Dog-Sheet outline_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +106,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Coin-Sheet_0
+      name: Dog-Sheet outline_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 20
-        width: 4
-        height: 4
+        y: 0
+        width: 8
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -114,20 +120,62 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 54d6296a2f3e5c5d0800000000000000
-      internalID: -3042775341902697147
+      spriteID: 4b94d54c901790f20800000000000000
+      internalID: 3389364481336101300
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Coin-Sheet_1
+      name: Dog-Sheet outline_1
       rect:
         serializedVersion: 2
-        x: 4
-        y: 20
-        width: 4
-        height: 4
+        x: 8
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edbd11faee6591a00800000000000000
+      internalID: 727708397936434142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dog-Sheet outline_2
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3950e7c4495249f0800000000000000
+      internalID: -485727657856575172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dog-Sheet outline_3
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 0
+        width: 8
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -135,20 +183,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2683759e7ba74eb41adcf264234d9b4d
-      internalID: -1880399078
+      spriteID: 557a00f86d00a5c42bf48a358ac1bb27
+      internalID: -1325840003
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Coin-Sheet_2
+      name: Dog-Sheet outline_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 16
-        width: 4
-        height: 4
+        x: 32
+        y: 0
+        width: 8
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -156,20 +204,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fc8216fc04d7d77499768374810a0e01
-      internalID: 2145820542
+      spriteID: c11311fe98369af4f9d9885a98681076
+      internalID: 1285721903
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Coin-Sheet_3
+      name: Dog-Sheet outline_5
       rect:
         serializedVersion: 2
-        x: 4
-        y: 16
-        width: 4
-        height: 4
+        x: 40
+        y: 0
+        width: 8
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -177,20 +225,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0e88f7d90f265cc419d883465653dcb9
-      internalID: 1460276520
+      spriteID: 06d1f50305862b041a10e3b8ed9ae09c
+      internalID: 567559235
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Coin-Sheet_4
+      name: Dog-Sheet outline_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 12
-        width: 4
-        height: 4
+        x: 48
+        y: 0
+        width: 8
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -198,71 +246,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e7ab10d7eab0b884fb382003b880b878
-      internalID: -1399736928
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Coin-Sheet_5
-      rect:
-        serializedVersion: 2
-        x: 4
-        y: 12
-        width: 4
-        height: 4
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 811f570e3921fce4f969f59fabd4a4e2
-      internalID: -357876150
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Coin-Sheet_6
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 8
-        width: 4
-        height: 4
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5dd10b2cd28d55242b530abc4ef78d93
-      internalID: 293262338
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Coin-Sheet_7
-      rect:
-        serializedVersion: 2
-        x: 4
-        y: 8
-        width: 4
-        height: 4
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1d31e9b8d7aadbc4bb0e3e5a55d6c37c
-      internalID: -728070326
+      spriteID: 658dbf9bbb5dfa944b3250b908b52cec
+      internalID: 155210897
       vertices: []
       indices: 
       edges: []
@@ -270,7 +255,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 86b491d1ebf69fe41a27c62811eb2592
+    spriteID: 72f23796302c72e45a8c03b277b6a260
     internalID: 0
     vertices: []
     indices: 
@@ -278,14 +263,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Coin-Sheet_0: -3042775341902697147
-      Coin-Sheet_1: -1880399078
-      Coin-Sheet_2: 2145820542
-      Coin-Sheet_3: 1460276520
-      Coin-Sheet_4: -1399736928
-      Coin-Sheet_5: -357876150
-      Coin-Sheet_6: 293262338
-      Coin-Sheet_7: -728070326
+      Dog-Sheet outline_0: 3389364481336101300
+      Dog-Sheet outline_1: 727708397936434142
+      Dog-Sheet outline_2: -485727657856575172
+      Dog-Sheet outline_3: -1325840003
+      Dog-Sheet outline_4: 1285721903
+      Dog-Sheet outline_5: 567559235
+      Dog-Sheet outline_6: 155210897
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

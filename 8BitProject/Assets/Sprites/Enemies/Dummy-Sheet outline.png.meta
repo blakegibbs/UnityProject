@@ -1,31 +1,25 @@
 fileFormatVersion: 2
-guid: 18c2e3c3ae859354fa6f2088d03c9899
+guid: 32dfd647eeb2c4c47a5a37f12867e80b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6888708756529517008
-    second: PlayerSpriteSheet_0
+      213: -5144128032783999767
+    second: Dummy-Sheet outline_0
   - first:
-      213: 2788089956977029842
-    second: PlayerSpriteSheet_1
+      213: 3857456750415826170
+    second: Dummy-Sheet outline_1
   - first:
-      213: -8744409789289659004
-    second: PlayerSpriteSheet_2
+      213: -2485867197638026067
+    second: Dummy-Sheet outline_2
   - first:
-      213: 5399228094500936495
-    second: PlayerSpriteSheet_3
+      213: 6475087186437703471
+    second: Dummy-Sheet outline_3
   - first:
-      213: -9219114279707902762
-    second: PlayerSpriteSheet_4
+      213: 6634701208319144381
+    second: Dummy-Sheet outline_4
   - first:
-      213: 1866080321450298439
-    second: PlayerSpriteSheet_5
-  - first:
-      213: -4458058345491200054
-    second: PlayerSpriteSheet_6
-  - first:
-      213: -5539222966354765283
-    second: PlayerSpriteSheet_7
+      213: -5564416232746681599
+    second: Dummy-Sheet outline_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -121,13 +115,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlayerSpriteSheet_0
+      name: Dummy-Sheet outline_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 8
-        height: 8
+        width: 9
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -135,20 +129,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0d1901abd1c999f50800000000000000
-      internalID: 6888708756529517008
+      spriteID: 9ecd7c61fc26c98b0800000000000000
+      internalID: -5144128032783999767
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSpriteSheet_1
+      name: Dummy-Sheet outline_1
       rect:
         serializedVersion: 2
-        x: 8
+        x: 10
         y: 0
-        width: 8
-        height: 8
+        width: 10
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -156,20 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2d2337f3b0941b620800000000000000
-      internalID: 2788089956977029842
+      spriteID: afcc7f01a70788530800000000000000
+      internalID: 3857456750415826170
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSpriteSheet_2
+      name: Dummy-Sheet outline_2
       rect:
         serializedVersion: 2
-        x: 16
+        x: 20
         y: 0
-        width: 8
-        height: 8
+        width: 11
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -177,20 +171,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 48501f260ad95a680800000000000000
-      internalID: -8744409789289659004
+      spriteID: dac5df554fc608dd0800000000000000
+      internalID: -2485867197638026067
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSpriteSheet_3
+      name: Dummy-Sheet outline_3
       rect:
         serializedVersion: 2
-        x: 24
+        x: 30
         y: 0
-        width: 8
-        height: 8
+        width: 10
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -198,41 +192,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f2b990a7859edea40800000000000000
-      internalID: 5399228094500936495
+      spriteID: f278d455d712cd950800000000000000
+      internalID: 6475087186437703471
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSpriteSheet_4
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6dc774658602f0080800000000000000
-      internalID: -9219114279707902762
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerSpriteSheet_5
+      name: Dummy-Sheet outline_4
       rect:
         serializedVersion: 2
         x: 40
         y: 0
-        width: 8
-        height: 8
+        width: 9
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -240,20 +213,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 74c446a5a26a5e910800000000000000
-      internalID: 1866080321450298439
+      spriteID: db1b7b8c891331c50800000000000000
+      internalID: 6634701208319144381
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSpriteSheet_6
+      name: Dummy-Sheet outline_5
       rect:
         serializedVersion: 2
-        x: 48
+        x: 49
         y: 0
-        width: 8
-        height: 8
+        width: 10
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -261,29 +234,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ac70809fd8bc122c0800000000000000
-      internalID: -4458058345491200054
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerSpriteSheet_7
-      rect:
-        serializedVersion: 2
-        x: 56
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d1a1db66f0ab023b0800000000000000
-      internalID: -5539222966354765283
+      spriteID: 10b77b8fae837c2b0800000000000000
+      internalID: -5564416232746681599
       vertices: []
       indices: 
       edges: []
@@ -291,7 +243,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 8927ca6b2efb2f64986bfe798c069305
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -299,14 +251,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PlayerSpriteSheet_0: 6888708756529517008
-      PlayerSpriteSheet_1: 2788089956977029842
-      PlayerSpriteSheet_2: -8744409789289659004
-      PlayerSpriteSheet_3: 5399228094500936495
-      PlayerSpriteSheet_4: -9219114279707902762
-      PlayerSpriteSheet_5: 1866080321450298439
-      PlayerSpriteSheet_6: -4458058345491200054
-      PlayerSpriteSheet_7: -5539222966354765283
+      Dummy-Sheet outline_0: -5144128032783999767
+      Dummy-Sheet outline_1: 3857456750415826170
+      Dummy-Sheet outline_2: -2485867197638026067
+      Dummy-Sheet outline_3: 6475087186437703471
+      Dummy-Sheet outline_4: 6634701208319144381
+      Dummy-Sheet outline_5: -5564416232746681599
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
