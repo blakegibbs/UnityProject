@@ -19,4 +19,9 @@ public class PlayerInventory : MonoBehaviour
     {
         currentMoney -= value;
     }
+
+    public void AddLetter(string contents, int index)
+    {
+        //todo add letter inventory
+    }
 }
