@@ -57,7 +57,7 @@ namespace OutlineFx
         [Tooltip("Solid fill of outline")]
         private float  _solid;
 
-        [Range(0, 1f)]
+        [Range(-1, 1f)]
         [Tooltip("Outline thickness")]
         public  float  _thickness = 0.001f;
         [Range(0, 1)]
