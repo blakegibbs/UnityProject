@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     public float friction = 0.5f; // Friction force applied when grounded
 
     [Header("Ground Check")]
-    public BoxCollider2D groundCheckCollider;
+    public CapsuleCollider2D groundCheckCollider;
     public LayerMask groundLayer;
     public float rayLength = 0.1f;
 
@@ -273,6 +273,10 @@ public class PlayerController : MonoBehaviour
         if (target.CompareTag("Enemy"))
         {
             target.GetComponent<Dummy>().TakeDamage(attackDamage, facingRight);
+        }
+        if (target.CompareTag("Door"))
+        {
+            target.GetComponent<Animator>().SetTrigger("Smash");
         }
     }
 

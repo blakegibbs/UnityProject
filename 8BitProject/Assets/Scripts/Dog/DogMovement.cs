@@ -141,7 +141,7 @@ public class DogMovement : MonoBehaviour
             isNearDrop = false;
         }
 
-        if(wallCheckerHit.distance < 2 && wallCheckerHit.transform != null)
+        if(wallCheckerHit.distance < 0.5 && wallCheckerHit.transform != null)
         {
             Jump();
         }
