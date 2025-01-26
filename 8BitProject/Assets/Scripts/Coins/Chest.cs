@@ -10,9 +10,9 @@ public class Chest : MonoBehaviour
     public int amountToSpawnSmall = 5;
     public float forceMultiplier = 5f;
     public Vector2 spawnOffset = new Vector2(0.5f, 0.5f);
-
     public void OpenChest()
     {
+        this.GetComponent<AudioSource>().Play();
         for (int i = 0; i < amountToSpawnBig; i++)
         {
             SpawnAndApplyForce(dollarPrefab);
