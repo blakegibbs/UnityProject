@@ -12,6 +12,12 @@ public class FallingPlatform : MonoBehaviour
     public bool resetTimer = false;
     private bool activated = false;
     public bool destroy;
+    public bool accountForMultipleEntries = false;
+    public int timesActivatedTillDrop = 1;
+    public int times = 0;
+    bool isinside = false;
+    public float delayTime = 0.2f; // Delay time in seconds
+    private float timer1 = 0f;
 
     private void Start()
     {
@@ -19,11 +25,48 @@ public class FallingPlatform : MonoBehaviour
         timer = timeUntilPlatformFalls;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.CompareTag("Player"))
+        {
+            // Only update isinside if enough time has passed
+            if (timer1 <= 0f)
+            {
+                if (!isinside)
+                {
+                    times += 1;
+                    isinside = true;
+                }
+                if (times >= timesActivatedTillDrop)
+                {
+                    activated = true;
+                }
+                timer1 = delayTime; // Reset the timer
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.transform.CompareTag("Player"))
+        {
+            // Only update isinside if enough time has passed
+            if (timer1 <= 0f)
+            {
+                isinside = false;
+                timer1 = delayTime; // Reset the timer
+            }
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.CompareTag("Player"))
         {
-            activated = true;
+            if(!accountForMultipleEntries)
+            {
+                activated = true;
+            }
         }
     }
 
@@ -37,8 +80,17 @@ public class FallingPlatform : MonoBehaviour
 
     private void Update()
     {
+        if (timer1> 0f)
+        {
+            timer1 -= Time.deltaTime;
+        }
+
         if (activated)
         {
+            if(this.GetComponent<PlatformLand>() != null)
+            {
+                this.GetComponent<PlatformLand>().enabled = false;
+            }
             timer -= Time.deltaTime;
             if (timer <= 0)
             {

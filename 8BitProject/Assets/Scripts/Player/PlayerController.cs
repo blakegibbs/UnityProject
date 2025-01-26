@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour
             Movement();
             Jump();
             Attack();
-            PlayFootsteps();
+            WalkingEffects();
             PlayLandingSound();
         }
         else
@@ -148,7 +148,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void PlayFootsteps()
+    private void WalkingEffects()
     {
         if (isGrounded && Mathf.Abs(rb.velocity.x) > 0.01f) //only play footsteps when grounded and moving
         {
@@ -320,10 +320,13 @@ public class PlayerController : MonoBehaviour
             target.GetComponent<Dummy>().TakeDamage(attackDamage, facingRight);
             target.GetComponent<AudioSource>().Play();
         }
-        if (target.CompareTag("Door"))
+        if (target.CompareTag("Decoration"))
         {
             target.GetComponent<Animator>().SetTrigger("Smash");
-            target.GetComponent<AudioSource>().Play();
+            if(target.GetComponent<AudioSource>() != null)
+            {
+                target.GetComponent<AudioSource>().Play();
+            }
         }
     }
 
