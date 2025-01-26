@@ -7,12 +7,16 @@ public class CoinCollect : MonoBehaviour
     public int coinValue = 1;
     private bool inDogsMouth = false;
     private Transform dog;
+    bool collected = false;
+    float timer = 1f;
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !collected)
         {
             other.GetComponentInParent<PlayerInventory>().AddMoney(coinValue);
-            Destroy(gameObject);
+            this.GetComponent<AudioSource>().Play();
+            this.GetComponent<SpriteRenderer>().enabled = false;
+            collected = true;
         }
         else if (other.CompareTag("Dog"))
         {
@@ -26,6 +30,14 @@ public class CoinCollect : MonoBehaviour
         if(inDogsMouth)
         {
             HeldByDog();
+        }
+        if (collected)
+        {
+            timer -= Time.deltaTime;
+            if(timer< 0f)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 

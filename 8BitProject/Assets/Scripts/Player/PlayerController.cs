@@ -55,7 +55,16 @@ public class PlayerController : MonoBehaviour
     private bool isLedgeHanging;
     private bool facingRight = true;
 
+    [Header("Sounds")]
+    public AudioClip footsteps;
+    public float footstepInterval = 0.5f;
+    private float footstepTimer = 0f;
+    public float landingNoisePitch = 1.5f;
+    public float walkingNoisePitchUpper = 1f;
+    public float walkingNoisePitchLower = 0.7f;
+
     private float currentVelocityX = 0f;
+    private bool wasGroundedLastFrame = false;
 
     private void Start()
     {
@@ -71,11 +80,14 @@ public class PlayerController : MonoBehaviour
             Movement();
             Jump();
             Attack();
+            PlayFootsteps();
+            PlayLandingSound();
         }
         else
         {
             LedgeHang();
         }
+        wasGroundedLastFrame = isGrounded;
     }
 
     private void Movement()
@@ -133,6 +145,29 @@ public class PlayerController : MonoBehaviour
             {
                 Flip();
             }
+        }
+    }
+
+    private void PlayFootsteps()
+    {
+        if (isGrounded && Mathf.Abs(rb.velocity.x) > 0.01f) //only play footsteps when grounded and moving
+        {
+            footstepTimer -= Time.deltaTime;
+
+            if (footstepTimer <= 0f)
+            {
+                // Play footstep sound with random pitch
+                AudioSource audioSource = GetComponent<AudioSource>();
+                audioSource.pitch = Random.Range(walkingNoisePitchLower, walkingNoisePitchUpper); //random pitch between 0.8 and 1.2
+                audioSource.PlayOneShot(footsteps);
+
+                // Reset the timer
+                footstepTimer = footstepInterval;
+            }
+        }
+        else
+        {
+            footstepTimer = 0;
         }
     }
 
@@ -210,6 +245,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void PlayLandingSound()
+    {
+        if (isGrounded && !wasGroundedLastFrame)
+        {
+            AudioSource audioSource = GetComponent<AudioSource>();
+            audioSource.pitch = landingNoisePitch;
+            audioSource.PlayOneShot(footsteps);
+        }
+    }
+
     private void Attack()
     {
         float direction = 1;
@@ -273,10 +318,12 @@ public class PlayerController : MonoBehaviour
         if (target.CompareTag("Enemy"))
         {
             target.GetComponent<Dummy>().TakeDamage(attackDamage, facingRight);
+            target.GetComponent<AudioSource>().Play();
         }
         if (target.CompareTag("Door"))
         {
             target.GetComponent<Animator>().SetTrigger("Smash");
+            target.GetComponent<AudioSource>().Play();
         }
     }
 
