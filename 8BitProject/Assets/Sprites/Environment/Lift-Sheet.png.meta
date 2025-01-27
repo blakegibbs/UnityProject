@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 8d4ce1631e130ee49af3d5f65120d516
+guid: c539f9e470dcad84180195f828837721
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5212806505647604513
-    second: Lift_0
+      213: 2136604743993129059
+    second: Lift-Sheet_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Lift_0
+      name: Lift-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 19
-        height: 17
+        height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -114,8 +114,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fdc770c0a1468a7b0800000000000000
-      internalID: -5212806505647604513
+      spriteID: 368ff17c1beb6ad10800000000000000
+      internalID: 2136604743993129059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lift-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1a50b14461209c4f8aff646660296ef
+      internalID: 492995286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lift-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f23a97e5fea0e2b4282dd78c05a4ce31
+      internalID: 204206550
       vertices: []
       indices: 
       edges: []
@@ -123,7 +165,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: f5583e807ed20e74189f12812717b945
     internalID: 0
     vertices: []
     indices: 
@@ -131,7 +173,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Lift_0: -5212806505647604513
+      Lift-Sheet_0: 2136604743993129059
+      Lift-Sheet_1: 492995286
+      Lift-Sheet_2: 204206550
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

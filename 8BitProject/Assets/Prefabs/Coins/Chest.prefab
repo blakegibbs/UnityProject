@@ -172,8 +172,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dollarPrefab: {fileID: 1416317971622378603, guid: a5630038e725a9d47a6c254b37bddcaa, type: 3}
   smallDollarPrefab: {fileID: 3020797094112782919, guid: b400b12c1cd5d824194f4d2ba7f6c3c8, type: 3}
-  amountToSpawnBig: 1
-  amountToSpawnSmall: 5
+  amountToSpawnBig: 4
+  amountToSpawnSmall: 10
   forceMultiplier: 10
   spawnOffset: {x: 0.5, y: 0.5}
 --- !u!82 &-2168371555906803057
