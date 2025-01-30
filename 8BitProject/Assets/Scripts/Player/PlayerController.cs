@@ -322,6 +322,7 @@ public class PlayerController : MonoBehaviour
         }
         if (target.CompareTag("Decoration"))
         {
+            Debug.Log("Here");
             target.GetComponent<Animator>().SetTrigger("Smash");
             if(target.GetComponent<AudioSource>() != null)
             {

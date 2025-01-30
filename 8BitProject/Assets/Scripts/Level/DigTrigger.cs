@@ -35,7 +35,10 @@ public class DigTrigger : MonoBehaviour
 
     private void OnDestroy()
     {
-        animator.SetBool("Digging", false);
+        if (animator != null)
+        {
+            animator.SetBool("Digging", false);
+        }
         Destroy(ThingToBeDug);
     }
 }
