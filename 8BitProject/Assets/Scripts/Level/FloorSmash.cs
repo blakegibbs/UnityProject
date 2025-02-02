@@ -6,6 +6,7 @@ public class FloorSmash : MonoBehaviour
 {
     public float rayDistance = 10f;
     public GameObject smallLift;
+    public GameObject dogWait;
 
     public LayerMask weightLayer; // Set in the Inspector
 
@@ -27,6 +28,7 @@ public class FloorSmash : MonoBehaviour
                 this.gameObject.SetActive(false);
                 smallLift.SetActive(false);
                 DisableLevers();
+                dogWait.SetActive(false);
                 hit.collider.gameObject.layer = 3;
             }
 

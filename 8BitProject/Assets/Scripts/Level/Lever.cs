@@ -24,5 +24,6 @@ public class Lever : MonoBehaviour
     public void BigLiftDown()
     {
         anim.Play("Mill2");
+        anim.speed = 10;
     }
 }

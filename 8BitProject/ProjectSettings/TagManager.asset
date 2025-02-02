@@ -8,6 +8,7 @@ TagManager:
   - Dog
   - Door
   - Decoration
+  - WaitZone
   layers:
   - Default
   - TransparentFX
