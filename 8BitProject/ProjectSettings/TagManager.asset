@@ -9,6 +9,7 @@ TagManager:
   - Door
   - Decoration
   - WaitZone
+  - Interactable
   layers:
   - Default
   - TransparentFX

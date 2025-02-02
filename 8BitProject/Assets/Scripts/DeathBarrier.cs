@@ -10,5 +10,9 @@ public class DeathBarrier : MonoBehaviour
         {
             collision.GetComponentInParent<PlayerRespawn>().Respawn();
         }
+        else if (collision.CompareTag("Interactable"))
+        {
+            collision.GetComponent<RespawnObject>().Respawn();
+        }
     }
 }
