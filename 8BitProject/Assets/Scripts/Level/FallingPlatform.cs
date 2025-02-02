@@ -90,6 +90,7 @@ public class FallingPlatform : MonoBehaviour
             if(this.GetComponent<PlatformLand>() != null)
             {
                 this.GetComponent<PlatformLand>().enabled = false;
+                this.GetComponent<CapsuleCollider2D>().enabled = false;
             }
             timer -= Time.deltaTime;
             if (timer <= 0)
