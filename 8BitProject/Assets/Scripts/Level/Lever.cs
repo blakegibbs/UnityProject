@@ -6,7 +6,7 @@ public class Lever : MonoBehaviour
 {
     public GameObject animatedObject;
     private Animator anim;
-    private bool moved = false;
+    public bool canMove = true;
 
     private void Start()
     {
@@ -15,6 +15,14 @@ public class Lever : MonoBehaviour
 
     public void FlipLever()
     {
-        anim.SetTrigger("Move");
+        if(canMove)
+        {
+            anim.SetTrigger("Move");
+        }
+    }
+
+    public void BigLiftDown()
+    {
+        anim.Play("Mill2");
     }
 }
