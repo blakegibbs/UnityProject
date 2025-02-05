@@ -130,6 +130,10 @@ public class Deer : MonoBehaviour
                     animator.SetBool("drinking", true);
                     animator.speed = 1;
                     isMoving = false;
+                    if(facingRight)
+                    {
+                        Flip();
+                    }
                     if(DistanceToPlayer() < 6)
                     {
                         deerTrap.SetActive(true);
