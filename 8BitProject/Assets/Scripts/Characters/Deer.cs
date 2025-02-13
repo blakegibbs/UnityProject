@@ -134,7 +134,7 @@ public class Deer : MonoBehaviour
                     {
                         Flip();
                     }
-                    if(DistanceToPlayer() < 6)
+                    if(DistanceToPlayer() < 3)
                     {
                         deerTrap.SetActive(true);
                         this.gameObject.SetActive(false);
