@@ -42,6 +42,10 @@ public class PlayerController : MonoBehaviour
     private bool applyingKnockback = false;
     private bool appliedKnockback = false;
 
+    [Header("Health")]
+    public float maxHealth = 100f;
+    [SerializeField]private float currentHealth;
+    public float knockbackEffectAmount = 3f;
 
     [Header("Animation")]
     [HideInInspector] public Animator animator;
@@ -69,6 +73,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        currentHealth = maxHealth;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         attackKnockbackTimer = attackKnockbackDuration;
@@ -148,6 +153,16 @@ public class PlayerController : MonoBehaviour
             else if (horizontalInput < 0 && facingRight)
             {
                 Flip();
+            }
+        }
+
+        if(applyingKnockback)
+        {
+            attackKnockbackTimer -= Time.deltaTime;
+            if(attackKnockbackTimer < 0)
+            {
+                applyingKnockback = false;
+                attackKnockbackTimer = attackKnockbackDuration;
             }
         }
     }
@@ -321,8 +336,16 @@ public class PlayerController : MonoBehaviour
     {
         if (target.CompareTag("Enemy"))
         {
-            target.GetComponent<Dummy>().TakeDamage(attackDamage, facingRight);
-            target.GetComponent<AudioSource>().Play();
+            if(target.GetComponent<Dummy>()  != null)
+            {
+                target.GetComponent<Dummy>().TakeDamage(attackDamage, facingRight);
+                target.GetComponent<AudioSource>().Play();
+            }
+            else
+            {
+                target.GetComponent<BasicGrounded>().TakeDamage(attackDamage, facingRight);
+            }
+
         }
         if (target.CompareTag("Decoration"))
         {
@@ -349,6 +372,31 @@ public class PlayerController : MonoBehaviour
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
+    }
+
+    public void TakeDamage(float damageAmount)
+    {
+        currentHealth -= damageAmount;
+        rb.velocity = Vector2.zero;
+        applyingKnockback = true;
+        rb.AddForce(transform.up * knockbackEffectAmount * 100 * Time.fixedDeltaTime, ForceMode2D.Impulse);
+        if (facingRight)
+        {
+            rb.AddForce(-transform.right * knockbackEffectAmount * 100 * Time.fixedDeltaTime, ForceMode2D.Impulse);
+        }
+        else
+        {
+            rb.AddForce(transform.right * knockbackEffectAmount * 100 * Time.fixedDeltaTime, ForceMode2D.Impulse);
+        }
+        if (currentHealth < 0)
+        {
+            Death();
+        }
+    }
+
+    private void Death()
+    {
+        Debug.Log("Dead");
     }
 
     private void LedgeHang()

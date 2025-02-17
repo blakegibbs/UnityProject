@@ -1,13 +1,12 @@
 using System.Collections;
 using UnityEngine;
 
-public class EnemyPatrol : MonoBehaviour
+public class BasicGrounded : MonoBehaviour
 {
     public float speed = 2f;
     public float detectionDistance = 1f;
     public float idleTime = 2f;
     public LayerMask groundLayer;
-    public LayerMask wallLayer;  // Added for wall detection
     public float groundCheckOffset = 0.5f;
     public Animator animator;
 
@@ -18,10 +17,26 @@ public class EnemyPatrol : MonoBehaviour
     private bool isIdle = false;
     public bool facingRight;
 
+    [Header("Health")]
+    public float maxHealth = 100;
+    float currentHealth;
+    public float knockbackEffectAmount = 3f;
+    bool isApplyingKnockback;
+    float knockbackTimer = 0.5f;
+
+    [Header("Attack")]
+    public float attackDamage;
+    public float attackCooldown;
+    private float timer;
+    private bool attacking = false;
+    public GameObject player;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         currentState = State.Moving;
+        currentHealth = maxHealth;
+        timer = attackCooldown;
     }
 
     void Update()
@@ -36,18 +51,61 @@ public class EnemyPatrol : MonoBehaviour
         {
             animator.speed = 1;
         }
+
+        if(attacking)
+        {
+            currentState = State.Idle;
+            timer -= Time.deltaTime;
+            if(timer <= 0)
+            {
+                timer = attackCooldown;
+                attacking = false;
+                currentState = State.Moving;
+            }
+        }
     }
 
     private void Patrol()
     {
-        if (!isIdle)
+        if (!isIdle && !isApplyingKnockback)
         {
-            rb.velocity = new Vector2(speed * direction, rb.velocity.y);
-
             if (ShouldTurnAround())
             {
                 StartCoroutine(IdleThenTurn());
             }
+            else
+            {
+                rb.velocity = new Vector2(speed * direction, rb.velocity.y);
+            }
+        }
+        if (isApplyingKnockback)
+        {
+            knockbackTimer -= Time.deltaTime;
+            if (knockbackTimer <= 0)
+            {
+                knockbackTimer = 0.5f;
+                isApplyingKnockback = false;
+            }
+        }
+    }
+
+    public void TakeDamage(float amount, bool right)
+    {
+        isApplyingKnockback = true;
+        currentHealth -= amount;
+        animator.SetTrigger("TakeDamage");
+        rb.AddForce(transform.up * knockbackEffectAmount * 100 * Time.fixedDeltaTime, ForceMode2D.Impulse);
+        if (!right)
+        {
+            rb.AddForce(-transform.right * knockbackEffectAmount * 100 * Time.fixedDeltaTime, ForceMode2D.Impulse);
+        }
+        else
+        {
+            rb.AddForce(transform.right * knockbackEffectAmount * 100 * Time.fixedDeltaTime, ForceMode2D.Impulse);
+        }
+        if (currentHealth < 0)
+        {
+            this.gameObject.SetActive(false);
         }
     }
 
@@ -74,15 +132,32 @@ public class EnemyPatrol : MonoBehaviour
         }
 
         // Raycast for wall detection
-        RaycastHit2D wallCheckerHit = Physics2D.Raycast(rayPosition, Vector2.right * direction, detectionDistance, wallLayer);
+        RaycastHit2D wallCheckerHit = Physics2D.Raycast(rayPosition, Vector2.right * direction, detectionDistance, groundLayer);
         Debug.DrawRay(rayPosition, Vector2.right * direction * detectionDistance, Color.red);  // Debug line for wall detection
 
         if (wallCheckerHit.collider != null)
         {
             return true;
         }
-
         return false;
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Attack();
+        }
+    }
+
+    private void Attack()
+    {
+        if(timer > 0 && !attacking)
+        {
+            player.GetComponent<PlayerController>().TakeDamage(attackDamage);
+            animator.SetTrigger("Attack");
+            attacking = true;
+        }
     }
 
     private IEnumerator IdleThenTurn()
