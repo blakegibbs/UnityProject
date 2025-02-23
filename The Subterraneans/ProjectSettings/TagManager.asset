@@ -10,6 +10,8 @@ TagManager:
   - Decoration
   - WaitZone
   - Interactable
+  - DeathBox
+  - ZoneTransition
   layers:
   - Default
   - TransparentFX
