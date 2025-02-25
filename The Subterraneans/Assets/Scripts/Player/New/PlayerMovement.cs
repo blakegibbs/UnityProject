@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private float speed = 8f;
     private float horizontal;
+    private float vertical;
     [SerializeField] private float walkingSpeed = 8f;
     [SerializeField] private float jumpingPower = 16f;
     [SerializeField] private float fallMultiplier = 2.5f;
@@ -15,9 +16,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float coyoteTime = 0.2f;
     private float coyoteTimeCounter;
 
+    [Header("Double Jump")]
+    private bool canDoubleJump;
+
     [Header("Wall Jump")]
     [SerializeField] private float wallSlidingSpeed = 2f;
+    [SerializeField] private float wallClimbingSpeed = 2f;
     private bool isWallSliding;
+    private bool isWallClimbing;
     private bool isWallJumping;
     private float wallJumpingDirection;
     [SerializeField] private float wallJumpingTime = 0.2f;
@@ -30,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform wallCheck;
-    [SerializeField] private LayerMask wallLayer;
+    [SerializeField] private LayerMask wallClimbLayer;
 
     [Header("Dash")]
     [SerializeField] private float dashingPower = 24f;
@@ -40,6 +46,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashingCooldown = 1f;
     [SerializeField] private TrailRenderer tr;
 
+    [Header("Unlocks")]
+    public bool doubleJumpUnlocked;
+    public bool wallClimbUnlocked;
+    public bool wallJumpUnlocked;
+    public bool dashUnlocked;
+
     [Header("Effects")]
     public CameraShake cameraShake;
     public float jumpCameraShakeDuration;
@@ -47,6 +59,11 @@ public class PlayerMovement : MonoBehaviour
     [Header("Animation")]
     public Animator animator;
     public float animationSpeedMultiplier = 4f;
+
+    private void Start()
+    {
+        canDoubleJump = doubleJumpUnlocked;
+    }
 
     private void Update()
     {
@@ -60,24 +77,36 @@ public class PlayerMovement : MonoBehaviour
         if (IsGrounded())
         {
             coyoteTimeCounter = coyoteTime;
+            if(doubleJumpUnlocked)
+            {
+                canDoubleJump = true;
+            }
         }
         else
         {
             coyoteTimeCounter -= Time.deltaTime;
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash && horizontal != 0f && dashUnlocked)
         {
             cameraShake.shakeDuration = jumpCameraShakeDuration;
             StartCoroutine(Dash());
         }
 
         horizontal = Input.GetAxisRaw("Horizontal");
-
-        if (Input.GetButtonDown("Jump") && coyoteTimeCounter > 0f)
+        vertical = Input.GetAxisRaw("Vertical");
+        if (Input.GetButtonDown("Jump"))
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
-            coyoteTimeCounter = 0f;
+            if (coyoteTimeCounter > 0f)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+                coyoteTimeCounter = 0f;
+            }
+            else if (canDoubleJump)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+                canDoubleJump = false;
+            }
         }
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
@@ -87,8 +116,14 @@ public class PlayerMovement : MonoBehaviour
         }
 
         WallSlide();
-        WallJump();
-
+        if(wallClimbUnlocked)
+        {
+            WallClimb();
+        }
+        if(wallJumpUnlocked)
+        {
+            WallJump();
+        }
         if (!isWallJumping)
         {
             Flip();
@@ -112,7 +147,7 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
         }
 
-        if(Mathf.Abs(rb.velocity.x) > 0)
+        if (Mathf.Abs(rb.velocity.x) > 0)
         {
             animator.speed = animationSpeedMultiplier;
         }
@@ -129,12 +164,16 @@ public class PlayerMovement : MonoBehaviour
 
     private bool IsWalled()
     {
-        return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
+        return Physics2D.OverlapCircle(wallCheck.position, 0.2f, groundLayer);
+    }
+    private bool IsWallClimbable()
+    {
+        return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallClimbLayer);
     }
 
     private void WallSlide()
     {
-        if (IsWalled() && !IsGrounded() && horizontal != 0f)
+        if (IsWalled() && !IsGrounded() && horizontal != 0f && !isWallClimbing)
         {
             isWallSliding = true;
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
@@ -144,10 +183,32 @@ public class PlayerMovement : MonoBehaviour
             isWallSliding = false;
         }
     }
+    private void WallClimb()
+    {
+        if (IsWallClimbable() && horizontal != 0f && vertical > 0f)
+        {
+            rb.constraints = RigidbodyConstraints2D.None;
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            isWallClimbing = true;
+            rb.velocity = new Vector2(rb.velocity.x, wallClimbingSpeed);
+        }
+        else if (IsWallClimbable() && horizontal != 0f && vertical == 0f)
+        {
+            isWallClimbing = true;
+            rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+        }
+        else
+        {
+            rb.constraints = RigidbodyConstraints2D.None;
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            isWallClimbing = false;
+        }
+    }
+
 
     private void WallJump()
     {
-        if (isWallSliding)
+        if (isWallSliding || isWallClimbing)
         {
             isWallJumping = false;
             wallJumpingDirection = -transform.localScale.x;
