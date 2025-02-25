@@ -2161,7 +2161,7 @@ MonoBehaviour:
   wallSlidingSpeed: 1
   wallClimbingSpeed: 3
   wallJumpingTime: 0.2
-  wallJumpingDuration: 0.25
+  wallJumpingDuration: 0.4
   wallJumpingPower: {x: 8, y: 16}
   rb: {fileID: 1661529059583519034}
   groundCheck: {fileID: 2137864547}
