@@ -59,6 +59,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Animation")]
     public Animator animator;
     public float animationSpeedMultiplier = 4f;
+    private bool isWalking;
+    private bool isWallHanging;
 
     private void Start()
     {
@@ -67,8 +69,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        animator.SetBool("isGrounded", IsGrounded());
-
+        UpdateAnimations();
         if (isDashing)
         {
             return;
@@ -112,7 +113,6 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
-            animator.SetFloat("Vertical", Mathf.Abs(rb.velocity.y));
         }
 
         WallSlide();
@@ -127,6 +127,15 @@ public class PlayerMovement : MonoBehaviour
         if (!isWallJumping)
         {
             Flip();
+        }
+
+        if (Mathf.Abs(rb.velocity.x) >= 0.01f)
+        {
+            isWalking = true;
+        }
+        else
+        {
+            isWalking = false;
         }
     }
 
@@ -146,20 +155,28 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
         }
+    }
 
-        if (Mathf.Abs(rb.velocity.x) > 0)
+    void UpdateAnimations()
+    {
+        animator.SetBool("isWalking", isWalking);
+        animator.SetBool("isGrounded", IsGrounded());
+        animator.SetFloat("Vertical", rb.velocity.y);
+        animator.SetBool("IsWallSliding", isWallSliding);
+        animator.SetBool("IsWallClimbing", isWallClimbing);
+        if(isWallHanging)
         {
-            animator.speed = animationSpeedMultiplier;
+            animator.speed = 0;
         }
         else
         {
-            animator.speed = 1f;
+            animator.speed = 1;
         }
     }
 
     private bool IsGrounded()
     {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+        return Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
     }
 
     private bool IsWalled()
@@ -190,11 +207,13 @@ public class PlayerMovement : MonoBehaviour
             rb.constraints = RigidbodyConstraints2D.None;
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
             isWallClimbing = true;
+            isWallHanging = false;
             rb.velocity = new Vector2(rb.velocity.x, wallClimbingSpeed);
         }
         else if (IsWallClimbable() && horizontal != 0f && vertical == 0f)
         {
             isWallClimbing = true;
+            isWallHanging = true;
             rb.constraints = RigidbodyConstraints2D.FreezePositionY;
         }
         else
@@ -202,6 +221,7 @@ public class PlayerMovement : MonoBehaviour
             rb.constraints = RigidbodyConstraints2D.None;
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
             isWallClimbing = false;
+            isWallHanging = false;
         }
     }
 
@@ -234,7 +254,6 @@ public class PlayerMovement : MonoBehaviour
                 transform.localScale = localScale;
             }
             cameraShake.shakeDuration = jumpCameraShakeDuration;
-            animator.SetFloat("Vertical", Mathf.Abs(rb.velocity.y));
             Invoke(nameof(StopWallJumping), wallJumpingDuration);
         }
     }
