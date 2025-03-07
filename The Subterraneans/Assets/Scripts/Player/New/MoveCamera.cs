@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class MoveCamera : MonoBehaviour
 {
     public Transform cameraPos;
     public Transform targetPos;
     public float moveSpeed = 5f;
+    bool followPlayerX = false;
+    bool followPlayerY= false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -16,6 +19,28 @@ public class MoveCamera : MonoBehaviour
             if(targetPos != null)
             {
                 StartCoroutine(MoveToTarget());
+            }
+        }
+        else if (collision.CompareTag("CameraFollowZoneX"))
+        {
+            if (!followPlayerX)
+            {
+                followPlayerX = true;
+            }
+            else
+            {
+                followPlayerY = false;
+            }
+        }
+        else if (collision.CompareTag("CameraFollowZoneY"))
+        {
+            if (!followPlayerY)
+            {
+                followPlayerY = true;
+            }
+            else
+            {
+                followPlayerY = false;
             }
         }
     }
@@ -36,5 +61,19 @@ public class MoveCamera : MonoBehaviour
 
         transform.GetComponent<CameraShake>().NewPosition(new Vector3(targetPos.position.x, targetPos.position.y, -10));
         cameraPos.position = new Vector3(targetPos.position.x, targetPos.position.y, -10f);
+    }
+
+    private void Update()
+    {
+        if (followPlayerX)
+        {
+            float targetX = Mathf.Lerp(cameraPos.position.x, transform.position.x, moveSpeed * Time.deltaTime);
+            cameraPos.position = new Vector3(targetX, cameraPos.position.y, cameraPos.position.z);
+        }
+        else if(followPlayerY)
+        {
+            float targetY = Mathf.Lerp(cameraPos.position.x, transform.position.x, moveSpeed * Time.deltaTime);
+            cameraPos.position = new Vector3(targetY, cameraPos.position.y, cameraPos.position.z);
+        }
     }
 }

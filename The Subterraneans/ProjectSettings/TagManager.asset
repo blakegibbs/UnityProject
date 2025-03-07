@@ -12,6 +12,7 @@ TagManager:
   - Interactable
   - DeathBox
   - ZoneTransition
+  - Unlock
   layers:
   - Default
   - TransparentFX

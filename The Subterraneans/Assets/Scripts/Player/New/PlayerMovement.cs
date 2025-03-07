@@ -37,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform wallCheck;
     [SerializeField] private LayerMask wallClimbLayer;
+    private bool wasGrounded;
 
     [Header("Dash")]
     [SerializeField] private float dashingPower = 24f;
@@ -55,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Effects")]
     public CameraShake cameraShake;
     public float jumpCameraShakeDuration;
+    public GameObject jumpingDust, landingDust;
 
     [Header("Animation")]
     public Animator animator;
@@ -69,6 +71,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        bool isCurrentlyGrounded = IsGrounded();
+
+        if (!wasGrounded && isCurrentlyGrounded)
+        {
+            GameObject dust = Instantiate(landingDust, groundCheck.position, Quaternion.identity);
+            Destroy destroyComp = dust.AddComponent<Destroy>();
+            destroyComp.timer = 0.5f;
+        }
+
+        wasGrounded = isCurrentlyGrounded;
+
         UpdateAnimations();
         if (isDashing)
         {
@@ -101,6 +114,9 @@ public class PlayerMovement : MonoBehaviour
             if (coyoteTimeCounter > 0f)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+                GameObject dust = Instantiate(jumpingDust, groundCheck.position, Quaternion.identity);
+                Destroy destroyComp = dust.AddComponent<Destroy>();
+                destroyComp.timer = 0.5f;
                 coyoteTimeCounter = 0f;
             }
             else if (canDoubleJump)
