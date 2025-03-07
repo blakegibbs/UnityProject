@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -63,6 +64,9 @@ public class PlayerMovement : MonoBehaviour
     public float animationSpeedMultiplier = 4f;
     private bool isWalking;
     private bool isWallHanging;
+
+    [Header("Platforms")]
+    public TilemapCollider2D platformCollider;
 
     private void Start()
     {
@@ -306,5 +310,17 @@ public class PlayerMovement : MonoBehaviour
         isDashing = false;
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Platforms") && vertical <= -0.1f)
+        {
+            platformCollider.enabled = false;
+        }
+        else if (collision.CompareTag("Platforms"))
+        {
+            platformCollider.enabled = true;
+        }
     }
 }

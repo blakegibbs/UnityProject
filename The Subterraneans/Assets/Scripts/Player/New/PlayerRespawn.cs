@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerRespawn : MonoBehaviour
@@ -15,7 +16,19 @@ public class PlayerRespawn : MonoBehaviour
     {
         if (collision.CompareTag("Respawn"))
         {
-            respawnPosition = collision.transform.position;
+            GameObject[] tombstonesArray = GameObject.FindGameObjectsWithTag("Respawn");
+            List<GameObject> tombstones = tombstonesArray.ToList();
+            foreach (var respawnPos in tombstones)
+            {
+                respawnPos.GetComponent<Animator>().SetBool("Active", false);
+            }
+            ChangeRespawnPoint(collision.transform);
         }
+    }
+
+    private void ChangeRespawnPoint(Transform newPoint)
+    {
+        respawnPosition = newPoint.transform.position;
+        newPoint.GetComponent<Animator>().SetBool("Active", true);
     }
 }

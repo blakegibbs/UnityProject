@@ -4,15 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
-  - Dog
-  - Door
-  - Decoration
-  - WaitZone
   - Interactable
   - DeathBox
   - ZoneTransition
   - Unlock
+  - NPC
+  - Platforms
   layers:
   - Default
   - TransparentFX
