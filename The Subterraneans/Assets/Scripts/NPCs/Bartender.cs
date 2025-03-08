@@ -14,8 +14,15 @@ public class Bartender : MonoBehaviour
     private int storyDialogueIndex = 0; // Track the story dialogue progress
     private string lastDialogue = ""; // Track the last dialogue to avoid repetition
 
+    bool resetDialogue = false;
+
     public void Interact()
     {
+        if (!resetDialogue)
+        {
+            storyDialogueIndex = 0;
+            resetDialogue = true;
+        }
         speech.SetActive(true);
         PlayerMovement playerScript = player.GetComponent<PlayerMovement>();
 
@@ -35,21 +42,25 @@ public class Bartender : MonoBehaviour
         if (playerScript.canUnlockDoubleJump)
         {
             playerScript.doubleJumpUnlocked = true;
+            playerScript.canUnlockDoubleJump = false;
             return dialogueData.unlockDoubleJump;
         }
         if (playerScript.canUnlockDash)
         {
             playerScript.dashUnlocked = true;
+            playerScript.canUnlockDash = false;
             return dialogueData.unlockDash;
         }
         if (playerScript.canUnlockWallClimb)
         {
             playerScript.wallClimbUnlocked = true;
+            playerScript.canUnlockWallClimb = false;
             return dialogueData.unlockWallClimb;
         }
         if (playerScript.canUnlockWallJump)
         {
             playerScript.wallJumpUnlocked = true;
+            playerScript.canUnlockWallJump = false;
             return dialogueData.unlockWallJump;
         }
         return null;
@@ -98,5 +109,6 @@ public class Bartender : MonoBehaviour
     public void EndInteraction()
     {
         speech.SetActive(false);
+        resetDialogue = false;
     }
 }

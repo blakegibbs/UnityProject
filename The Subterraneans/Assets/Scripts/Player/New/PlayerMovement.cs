@@ -61,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Effects")]
     public CameraShake cameraShake;
     public float jumpCameraShakeDuration;
-    public GameObject jumpingDust, landingDust;
+    public GameObject jumpingDust, landingDust, doubleJumpDust;
 
     [Header("Animation")]
     public Animator animator;
@@ -130,6 +130,9 @@ public class PlayerMovement : MonoBehaviour
             else if (canDoubleJump)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+                GameObject dust = Instantiate(doubleJumpDust, groundCheck.position, Quaternion.identity);
+                Destroy destroyComp = dust.AddComponent<Destroy>();
+                destroyComp.timer = 0.5f;
                 canDoubleJump = false;
             }
         }

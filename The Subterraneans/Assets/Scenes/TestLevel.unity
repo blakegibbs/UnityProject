@@ -35017,6 +35017,7 @@ MonoBehaviour:
   jumpCameraShakeDuration: 0.1
   jumpingDust: {fileID: 4504739166774995565, guid: dda9d5de18bba6d49b89983ac69028e1, type: 3}
   landingDust: {fileID: 1526033343731629432, guid: 847d79d44da49af46a5d41c52dd48a4a, type: 3}
+  doubleJumpDust: {fileID: 0}
   animator: {fileID: 2029176019}
   animationSpeedMultiplier: 4
   platformCollider: {fileID: 1519094883}
@@ -35886,6 +35887,7 @@ MonoBehaviour:
   jumpCameraShakeDuration: 0.1
   jumpingDust: {fileID: 4504739166774995565, guid: dda9d5de18bba6d49b89983ac69028e1, type: 3}
   landingDust: {fileID: 1526033343731629432, guid: 847d79d44da49af46a5d41c52dd48a4a, type: 3}
+  doubleJumpDust: {fileID: 8818160669268360093, guid: 0506e7de035655440b83d3d91c6dfb43, type: 3}
   animator: {fileID: 157705124009430884}
   animationSpeedMultiplier: 4
   platformCollider: {fileID: 1519094883}
