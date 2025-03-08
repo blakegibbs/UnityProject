@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd021ae81a1ddb449b97d9f93ca1d650, type: 3}
+  m_Name: BartenderDialogue
+  m_EditorClassIdentifier: 
+  randomDialogue:
+  - Used to be a lotta good folk up on the surface. Not much left of that now. I
+    ain't never seen a town so eager to bury itself... but gold, well, that makes
+    folks do strange things, don't it?
+  - "I ain't never seen a soul come down here and stay this long without somethin'
+    gnawin' at 'em. Don\u2019t let the quiet fool ya it\u2019ll start talkin' to
+    you. That mine... it has a way of gettin' under your skin, friend."
+  - "They say the moonshine\u2019ll heal a body, but I ain't seen it do much for
+    the soul. Don't get too attached to it... it ain't all it's cracked up to be.
+    Trust me, I been around long enough to know."
+  - "Used to have a dog... real loyal fella. Never left my side 'til the mines started
+    takin\u2019 more than just gold. If yer dog\u2019s got the right spirit, you
+    might just make it outta here in one piece. Might."
+  - "I\u2019ve poured this 'shine for many a prospector, but they don't tell ya what
+    it costs. When yer face starts to change, and yer bones start to ache, you\u2019ll
+    wish you\u2019d never tasted the stuff. But I ain't here to warn ya. I'm here
+    to serve."
+  - "Some folks up top talked about us like we was ghosts. Well, we are. Ain't no
+    place for a living soul down here anymore, not really. Just shadows, wanderin'
+    and whisperin\u2019 in the dark, keepin' their eyes on the gold."
+  - "Y'know, they used to say the moonshine would make ya stronger, live longer,
+    but every sip comes with a cost. The more ya drink, the less you remember...
+    or maybe it\u2019s the less you care. Ain\u2019t nobody up here rememberin' much
+    no more."
+  - "I keep pourin' drinks, keep the light on... but when the moon hits right, the
+    shadows get long. You might start hearin' things. I sure do. Been here long enough
+    to know that\u2019s when the past comes knockin'."
+  - I can tell by your eyes you ain't from around here. So, let me give ya some advice,
+    don't go wanderin' too deep, not if you value your skin. What you think's just
+    a mine is somethin' else entirely... and it don't take kindly to strangers.
+  storyDialogue:
+  - "\"Down in them deep mines, you'll find mushrooms sproutin' up. Mix 'em in with
+    my 'shine... well, that\u2019s when the real trouble starts.\""
+  - '"Now, don''t forget to fetch me some the next time you come across ''em."'
+  unlockDoubleJump: "\"Here, take this brew. It'll give ya an extra leap, but don\u2019t
+    go thinkin\u2019 it comes free. Ain\u2019t nothin\u2019 ever is down here. Just
+    be careful, friend, this place has a way of takin' more than you\u2019re ready
+    to give.\""
+  unlockDash: "This\u2019ll make you faster than a rattlesnake on a hot day. But
+    speed ain't always a blessing, you know. Sometimes it just gets you deeper into
+    trouble. Use it wisely... or you might find it leads you straight into the dark."
+  unlockWallClimb: "Take this, and you'll be able to climb the walls like a critter
+    on the hunt. But the higher you go, the further you fall. Ya might reach places
+    you ain\u2019t meant to be, so keep your eyes on your feet when you start crawlin\u2019."
+  unlockWallJump: "This\u2019ll let ya bounce off walls, like a spring-loaded trap.
+    Ain\u2019t too different from what we used to do down here, trapped in cycles,
+    jumpin' between shadows. Just don't get too used to the feelin\u2019 of flyin',
+    \u2018cause the fall always comes."

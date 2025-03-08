@@ -49,6 +49,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private TrailRenderer tr;
 
     [Header("Unlocks")]
+    public bool canUnlockDoubleJump;
+    public bool canUnlockDash;
+    public bool canUnlockWallJump;
+    public bool canUnlockWallClimb;
     public bool doubleJumpUnlocked;
     public bool wallClimbUnlocked;
     public bool wallJumpUnlocked;

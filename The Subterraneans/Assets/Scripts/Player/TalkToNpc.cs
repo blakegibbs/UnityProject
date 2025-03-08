@@ -4,25 +4,34 @@ using UnityEngine;
 
 public class TalkToNpc : MonoBehaviour
 {
-    bool interacted = false;
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.CompareTag("NPC"))
-        {
-            if(!interacted)
-            {
-                collision.GetComponentInChildren<GameObject>().SetActive(true);
-            }
-            else
-            {
-                collision.GetComponentInChildren<GameObject>().SetActive(false);
-            }
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                interacted = true;
-                collision.SendMessage("Interact");
-            }
-        }
+    public GameObject UI;
+    private bool playerInTrigger = false;
 
+    private void Update()
+    {
+        if (playerInTrigger && Input.GetKeyDown(KeyCode.E))
+        {
+            this.SendMessage("Interact", SendMessageOptions.DontRequireReceiver);
+            UI.SetActive(false);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            playerInTrigger = true;
+            UI.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            playerInTrigger = false;
+            UI.SetActive(false);
+            this.SendMessage("EndInteraction", SendMessageOptions.DontRequireReceiver);
+        }
     }
 }

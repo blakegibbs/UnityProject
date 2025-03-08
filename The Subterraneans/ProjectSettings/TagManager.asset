@@ -10,6 +10,9 @@ TagManager:
   - Unlock
   - NPC
   - Platforms
+  - CameraFollowZoneX
+  - CameraFollowZoneY
+  - Saloon
   layers:
   - Default
   - TransparentFX
