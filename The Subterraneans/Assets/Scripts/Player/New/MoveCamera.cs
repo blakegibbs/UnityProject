@@ -1,58 +1,69 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class MoveCamera : MonoBehaviour
 {
     public Transform cameraPos;
     public Transform targetPos;
     public float moveSpeed = 5f;
-    bool followPlayerX = false;
-    bool followPlayerY= false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("ZoneTransition"))
         {
             targetPos = collision.transform;
-            if(targetPos != null)
+            if (targetPos != null)
             {
-                StartCoroutine(MoveToTarget());
+                StartCoroutine(MoveToTarget(targetPos));
             }
         }
         else if (collision.CompareTag("CameraFollowZoneX"))
         {
-            if (!followPlayerX)
+            if(cameraPos.GetComponent<CameraFollow>() == null)
             {
-                followPlayerX = true;
-            }
-            else
-            {
-                followPlayerY = false;
+                targetPos = null;
+                CameraFollow followScript = cameraPos.gameObject.AddComponent<CameraFollow>();
+                followScript.followX = true;
+                followScript.target = transform;
+                followScript.followY = true;
             }
         }
         else if (collision.CompareTag("CameraFollowZoneY"))
         {
-            if (!followPlayerY)
+            if(cameraPos.GetComponent<CameraFollow>()  == null)
             {
-                followPlayerY = true;
-            }
-            else
-            {
-                followPlayerY = false;
+                targetPos = null;
+                CameraFollow followScript = cameraPos.gameObject.AddComponent<CameraFollow>();
+                followScript.followX = true;
+                followScript.target = transform;
+                followScript.followY = true;
             }
         }
     }
 
-    private IEnumerator MoveToTarget()
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("CameraFollowZoneX"))
+        {
+            CameraFollow followScript = cameraPos.gameObject.GetComponent<CameraFollow>();
+            Destroy(followScript);
+
+        }
+        else if (collision.CompareTag("CameraFollowZoneY"))
+        {
+            CameraFollow followScript = cameraPos.gameObject.GetComponent<CameraFollow>();
+            Destroy(followScript);
+        }
+    }
+
+    private IEnumerator MoveToTarget(Transform target)
     {
         while (Vector2.Distance(cameraPos.position, targetPos.position) > 0.01f)
         {
             transform.GetComponent<CameraShake>().isMoving = true;
 
             float speed = moveSpeed;
-
             Vector3 newPosition = Vector2.Lerp(cameraPos.position, targetPos.position, speed * Time.deltaTime);
             cameraPos.position = new Vector3(newPosition.x, newPosition.y, -10f);
 
@@ -61,19 +72,5 @@ public class MoveCamera : MonoBehaviour
 
         transform.GetComponent<CameraShake>().NewPosition(new Vector3(targetPos.position.x, targetPos.position.y, -10));
         cameraPos.position = new Vector3(targetPos.position.x, targetPos.position.y, -10f);
-    }
-
-    private void Update()
-    {
-        if (followPlayerX)
-        {
-            float targetX = Mathf.Lerp(cameraPos.position.x, transform.position.x, moveSpeed * Time.deltaTime);
-            cameraPos.position = new Vector3(targetX, cameraPos.position.y, cameraPos.position.z);
-        }
-        else if(followPlayerY)
-        {
-            float targetY = Mathf.Lerp(cameraPos.position.x, transform.position.x, moveSpeed * Time.deltaTime);
-            cameraPos.position = new Vector3(targetY, cameraPos.position.y, cameraPos.position.z);
-        }
     }
 }

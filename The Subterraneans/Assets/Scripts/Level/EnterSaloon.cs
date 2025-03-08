@@ -6,6 +6,7 @@ public class EnterSaloon : MonoBehaviour
 {
     public GameObject saloonPlayer, player, UI, saloonCamera, playerCamera;
     private bool playerInTrigger = false;
+    public Tutorial tutorial;
 
     private void Update()
     {
@@ -24,7 +25,7 @@ public class EnterSaloon : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && tutorial.spokenToBartender)
         {
             playerInTrigger = true;
             UI.SetActive(true);
@@ -33,7 +34,7 @@ public class EnterSaloon : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && tutorial.spokenToBartender)
         {
             playerInTrigger = false;
             UI.SetActive(false);

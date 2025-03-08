@@ -5,8 +5,12 @@ using UnityEngine;
 
 public class Bartender : MonoBehaviour
 {
-    public GameObject player, speech;
+    public GameObject player, speech, saloonPlayer;
+    public Tutorial tutorial;
     public TMP_Text text;
+    public GameObject doubleJumpUnlockCard, dashUnlockCard, wallJumpUnlockCard, wallClimbUnlockCard;
+    private GameObject cardToShow;
+    bool cardActive;
 
     [Header("Dialogue")]
     public DialogueData dialogueData; // Scriptable object reference
@@ -16,8 +20,25 @@ public class Bartender : MonoBehaviour
 
     bool resetDialogue = false;
 
+    private void Update()
+    {
+        if(cardActive)
+        {
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                doubleJumpUnlockCard.SetActive(false);
+                dashUnlockCard.SetActive(false);
+                wallJumpUnlockCard.SetActive(false);
+                wallClimbUnlockCard.SetActive(false);
+                PlayerMovement playerScript = saloonPlayer.GetComponent<PlayerMovement>();
+                cardActive = false;
+            }
+        }
+    }
+
     public void Interact()
     {
+        tutorial.SpokenToBartender();
         if (!resetDialogue)
         {
             storyDialogueIndex = 0;
@@ -43,24 +64,28 @@ public class Bartender : MonoBehaviour
         {
             playerScript.doubleJumpUnlocked = true;
             playerScript.canUnlockDoubleJump = false;
+            cardToShow = doubleJumpUnlockCard;
             return dialogueData.unlockDoubleJump;
         }
         if (playerScript.canUnlockDash)
         {
             playerScript.dashUnlocked = true;
             playerScript.canUnlockDash = false;
+            cardToShow = dashUnlockCard;
             return dialogueData.unlockDash;
         }
         if (playerScript.canUnlockWallClimb)
         {
             playerScript.wallClimbUnlocked = true;
             playerScript.canUnlockWallClimb = false;
+            cardToShow = wallClimbUnlockCard;
             return dialogueData.unlockWallClimb;
         }
         if (playerScript.canUnlockWallJump)
         {
             playerScript.wallJumpUnlocked = true;
             playerScript.canUnlockWallJump = false;
+            cardToShow = wallJumpUnlockCard;
             return dialogueData.unlockWallJump;
         }
         return null;
@@ -110,5 +135,18 @@ public class Bartender : MonoBehaviour
     {
         speech.SetActive(false);
         resetDialogue = false;
+        if(cardToShow != null)
+        {
+            ShowUnlockCard(cardToShow);
+        }
+    }
+
+    public void ShowUnlockCard(GameObject card)
+    {
+        card.SetActive(true);
+        PlayerMovement playerScript = saloonPlayer.GetComponent<PlayerMovement>();
+
+        cardActive = true;
+        cardToShow = null;
     }
 }
