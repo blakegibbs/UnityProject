@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd021ae81a1ddb449b97d9f93ca1d650, type: 3}
+  m_Name: ProspectorDialoogueData
+  m_EditorClassIdentifier: 
+  randomDialogue:
+  - You know, stranger, I once thought I could dig up enough gold to buy me a fine
+    house, a big ol' piece of land, and a nice horse to ride around on. Turns out,
+    all I got was a bad back and a lifetime of regrets
+  - "The trick to finding gold, they say, is knowin\u2019 where to look. But, after
+    years of lookin\u2019, I reckon it\u2019s more about knowin\u2019 where to stop
+    lookin\u2019\u2014and that\u2019s somewhere way back at the start of this here
+    town."
+  - You can hear the old town above us, if you listen real close. The wind through
+    the broken buildings... like the ghosts of those who left. I reckon they got
+    out, but we... we just stayed.
+  - "Heh, we\u2019ve been down here so long, we don\u2019t even remember what daylight
+    looks like. You think the world still turns up there? Maybe it forgot about us,
+    or maybe we just forgot about it."
+  - "Everyone came down here for gold, but it didn\u2019t take long for the gold
+    to stop matterin'. People got... comfortable in the dark. Maybe that\u2019s why
+    we never left. It\u2019s hard to go back to the surface when you\u2019ve grown
+    used to the shadows."
+  - "If you\u2019re curious about how we live down here, it\u2019s pretty simple.
+    Trap animals, boil \u2018em up, brew that moonshine, and keep the light burnin\u2019.
+    It ain\u2019t much, but it\u2019s all we got. And you\u2019ll need some of that
+    light if you\u2019re gonna make it down here, believe me."
+  - "This moonshine ain't just booze, it\u2019s the last thing that keeps us holdin'
+    on to what we used to be. Gives you strength, sure, but it also takes something
+    back. The deeper you drink, the less you are of yourself, until all you're left
+    with is what it wants you to be."
+  - "Folks used to call us miners, but after all these years in the dark, I reckon
+    we ain\u2019t much different from those Morlocks you read about in the old books.
+    We\u2019ve been buried so long, the light of the surface don\u2019t even feel
+    like a memory anymore. And the darker it gets, the more we become like them,
+    hunting what we can, always searching, always hungry."
+  storyDialogue:
+  - "Well, well, looks like you\u2019re headed into that dark hole, huh? You might
+    wanna take one of these lanterns off our hands before you get yourself lost in
+    there. It\u2019s mighty dark in there, friend. And trust me, you ain't gonna
+    find your way around without a little light. Heck, half the time, we can\u2019t
+    even see our own feet without one."
+  - "What my brother means to say is... it\u2019s gonna be a rough go of it without
+    a proper light. And, well, we got a spare here. No sense in you trippin\u2019
+    over your own feet in the dark. A little light could save you from the rats,
+    or worse... the mines got a way of takin\u2019 people by surprise, if you catch
+    my drift."
+  unlockDoubleJump: 
+  unlockDash: 
+  unlockWallClimb: 
+  unlockWallJump: 
+  unlockLight: "What my brother means to say is... it\u2019s gonna be a rough go
+    of it without a proper light. And, well, we got a spare here. No sense in you
+    trippin\u2019 over your own feet in the dark.\u201D \u201CA little light could
+    save you from the rats, or worse... the mines got a way of takin\u2019 people
+    by surprise, if you catch my drift"
+  purchaseSuccessful: "It\u2019ll light up the cave just fine, if you don\u2019t
+    mind the smell of it. You\u2019ll smell like an old miner by the time you come
+    out, though."
+  purchaseFailed: "Suit yourself, but I wouldn\u2019t say we didn\u2019t warn ya.
+    Don\u2019t come cryin\u2019 to us when you\u2019re stuck in there with nothin\u2019
+    but the sound of your own footsteps echoing."

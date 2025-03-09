@@ -18,7 +18,7 @@ public class LetterCollect : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.E))
             {
-                other.GetComponentInParent<PlayerInventory>().AddLetter(contentsOfLetter, 1);
+                //other.GetComponentInParent<PlayerInventory>().AddLetter(contentsOfLetter, 1);
                 this.GetComponent<Animator>().SetTrigger("Open");
                 destroyTimer = 1.5f;
             }

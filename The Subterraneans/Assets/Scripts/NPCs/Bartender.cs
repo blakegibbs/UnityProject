@@ -31,6 +31,7 @@ public class Bartender : MonoBehaviour
                 wallJumpUnlockCard.SetActive(false);
                 wallClimbUnlockCard.SetActive(false);
                 PlayerMovement playerScript = saloonPlayer.GetComponent<PlayerMovement>();
+                playerScript.ToggleMovementDisabled();
                 cardActive = false;
             }
         }
@@ -145,7 +146,7 @@ public class Bartender : MonoBehaviour
     {
         card.SetActive(true);
         PlayerMovement playerScript = saloonPlayer.GetComponent<PlayerMovement>();
-
+        playerScript.ToggleMovementDisabled();
         cardActive = true;
         cardToShow = null;
     }

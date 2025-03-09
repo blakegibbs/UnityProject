@@ -11,7 +11,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float walkingSpeed = 8f;
     [SerializeField] private float jumpingPower = 16f;
     [SerializeField] private float fallMultiplier = 2.5f;
-    private bool isFacingRight = true;
+    [HideInInspector] public bool isFacingRight = true;
+    private bool isMovementDisabled = false;
 
     [Header("Coyote Time")]
     [SerializeField] private float coyoteTime = 0.2f;
@@ -79,6 +80,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (isMovementDisabled)
+        {
+            return;
+        }
+
         bool isCurrentlyGrounded = IsGrounded();
 
         if (!wasGrounded && isCurrentlyGrounded)
@@ -99,7 +105,7 @@ public class PlayerMovement : MonoBehaviour
         if (IsGrounded())
         {
             coyoteTimeCounter = coyoteTime;
-            if(doubleJumpUnlocked)
+            if (doubleJumpUnlocked)
             {
                 canDoubleJump = true;
             }
@@ -143,11 +149,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
         WallSlide();
-        if(wallClimbUnlocked)
+        if (wallClimbUnlocked)
         {
             WallClimb();
         }
-        if(wallJumpUnlocked)
+        if (wallJumpUnlocked)
         {
             WallJump();
         }
@@ -156,18 +162,17 @@ public class PlayerMovement : MonoBehaviour
             Flip();
         }
 
-        if (Mathf.Abs(rb.velocity.x) >= 0.01f)
-        {
-            isWalking = true;
-        }
-        else
-        {
-            isWalking = false;
-        }
+        isWalking = Mathf.Abs(rb.velocity.x) >= 0.01f;
     }
 
     private void FixedUpdate()
     {
+        if (isMovementDisabled)
+        {
+            rb.velocity = Vector2.zero;
+            return;
+        }
+
         if (!isWallJumping)
         {
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
@@ -192,6 +197,25 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("IsWallSliding", isWallSliding);
         animator.SetBool("IsWallClimbing", isWallClimbing);
         if(isWallHanging)
+        {
+            animator.speed = 0;
+        }
+        else
+        {
+            animator.speed = 1;
+        }
+    }
+
+    public void ToggleMovementDisabled()
+    {
+        isMovementDisabled = !isMovementDisabled;
+        Debug.Log("movement is disabled" + isMovementDisabled);
+        groundCheck.gameObject.SetActive(!groundCheck.gameObject.activeInHierarchy);
+        wallCheck.gameObject.SetActive(!wallCheck.gameObject.activeInHierarchy);
+        rb.velocity = Vector2.zero;
+        animator.Play("PlayerIdle");
+        animator.SetBool("isWalking", false);
+        if(animator.speed == 1)
         {
             animator.speed = 0;
         }

@@ -15,5 +15,10 @@ public class DialogueData : ScriptableObject
     public string unlockDash = "This will make you faster!";
     public string unlockWallClimb = "Now you can scale walls!";
     public string unlockWallJump = "Time to bounce off walls!";
+    public string unlockLight = "How about you purchase a light";
+
+    [Header("PurchaseOptions")]
+    public string purchaseSuccessful = "Enjoy!";
+    public string purchaseFailed = "Come back when you've got enough gold!";
 
 }
