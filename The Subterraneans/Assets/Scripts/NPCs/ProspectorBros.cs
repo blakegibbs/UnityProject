@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 
 public class ProspectorBros : MonoBehaviour
 {
@@ -181,7 +180,7 @@ public class ProspectorBros : MonoBehaviour
     private void PurchaseLight()
     {
         player.GetComponent<PlayerInventory>().RemoveMoney(lightCost);
-        player.GetComponent<Light2D>().enabled = true;
+        player.GetComponent<PlayerMovement>().lightUnlocked = true;
         offeringPurchase = false;
         text.text = dialogueData.purchaseSuccessful;
         text.color = textcol1;

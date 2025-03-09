@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEngine.Rendering.Universal;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -58,11 +59,14 @@ public class PlayerMovement : MonoBehaviour
     public bool wallClimbUnlocked;
     public bool wallJumpUnlocked;
     public bool dashUnlocked;
+    public bool lightUnlocked;
 
     [Header("Effects")]
     public CameraShake cameraShake;
     public float jumpCameraShakeDuration;
-    public GameObject jumpingDust, landingDust, doubleJumpDust;
+    public GameObject jumpingDust, landingDust, doubleJumpDust, runningDust;
+    public float footstepInterval = 0.5f;
+    private float footstepTimer = 0f;
 
     [Header("Animation")]
     public Animator animator;
@@ -97,6 +101,8 @@ public class PlayerMovement : MonoBehaviour
         wasGrounded = isCurrentlyGrounded;
 
         UpdateAnimations();
+        WalkingEffects();
+
         if (isDashing)
         {
             return;
@@ -353,5 +359,51 @@ public class PlayerMovement : MonoBehaviour
         {
             platformCollider.enabled = true;
         }
+
+        if (collision.CompareTag("ActivateLight") && lightUnlocked)
+        {
+            this.GetComponent<Light2D>().enabled = true;
+        }
     }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("ActivateLight") && lightUnlocked)
+        {
+            this.GetComponent<Light2D>().enabled = false;
+        }
+    }
+
+
+    private void WalkingEffects()
+    {
+        if (IsGrounded() && Mathf.Abs(horizontal) > 0.01f) // Only play footsteps when grounded and moving
+        {
+            footstepTimer -= Time.deltaTime;
+
+            if (footstepTimer <= 0f)
+            {
+                SpawnRunningDust();
+                footstepTimer = footstepInterval; // Reset timer after spawning
+            }
+        }
+        else
+        {
+            footstepTimer = 0; // Ensure timer resets when not moving
+        }
+    }
+
+    private void SpawnRunningDust()
+    {
+        GameObject dust = Instantiate(runningDust, groundCheck.position, Quaternion.identity);
+
+        // Flip dust effect if player is facing left
+        if (!isFacingRight)
+        {
+            dust.transform.localScale = new Vector3(-1, 1, 1);
+        }
+
+        Destroy(dust, 0.5f); // Destroy dust after 0.5 seconds
+    }
+
 }

@@ -12,6 +12,7 @@ public class PlayerRespawn : MonoBehaviour
 
     private PlayerMovement playerMovement;
     private Vector3 originalScale;
+    bool isRespawning = false;
 
     private void Awake()
     {
@@ -21,13 +22,17 @@ public class PlayerRespawn : MonoBehaviour
 
     public void Respawn()
     {
-        StartCoroutine(RespawnSequence());
+        if (!isRespawning)
+        {
+            StartCoroutine(RespawnSequence());
+        }
     }
 
     private IEnumerator RespawnSequence()
     {
         // Disable movement
         playerMovement.ToggleMovementDisabled();
+        isRespawning=true;
 
         Vector3 startPosition = transform.position;
         Vector3 targetPosition = new Vector3(respawnPosition.x, respawnPosition.y + respawnYOffset, transform.position.z);
@@ -69,6 +74,7 @@ public class PlayerRespawn : MonoBehaviour
 
         // Re-enable movement
         playerMovement.ToggleMovementDisabled();
+        isRespawning = false;
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
