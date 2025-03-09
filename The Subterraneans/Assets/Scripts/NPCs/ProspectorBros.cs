@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class ProspectorBros : MonoBehaviour
 {
@@ -15,12 +16,16 @@ public class ProspectorBros : MonoBehaviour
     public int lightCost;
     bool offeringPurchase = false;
     public GameObject eToSkipText;
+    public GameObject argumentText;
 
     [Header("Dialogue")]
     public DialogueData dialogueData; // Scriptable object reference
 
     private int storyDialogueIndex = 0; // Track the story dialogue progress
     private string lastDialogue = ""; // Track the last dialogue to avoid repetition
+    public Color textcol1;
+    public Color textcol2;
+    private bool isCol1 = true;
 
     bool resetDialogue = false;
 
@@ -61,6 +66,7 @@ public class ProspectorBros : MonoBehaviour
 
     public void Interact()
     {
+        argumentText.SetActive(false);
         if(!offeringPurchase)
         {
             if (!resetDialogue)
@@ -74,9 +80,10 @@ public class ProspectorBros : MonoBehaviour
             }
             speech.SetActive(true);
 
-            if (storyDialogueIndex == dialogueData.storyDialogue.Count && !unlockedLight)//if story dialogye done ask about purchasing
+            if (storyDialogueIndex == dialogueData.storyDialogue.Count-1 && !unlockedLight)//if story dialogye done ask about purchasing
             {
                 text.text = dialogueData.unlockLight +"\n" + "Purchase light for : $" + lightCost  + "?";
+                text.color = textcol1;
                 offeringPurchase = true;
                 purchaseOptions.SetActive(true);
             }
@@ -89,6 +96,14 @@ public class ProspectorBros : MonoBehaviour
 
     private void ShowStoryDialogueOrRandom()
     {
+        if(storyDialogueIndex%2 == 0)
+        {
+            text.color = textcol1;
+        }
+        else
+        {
+            text.color = textcol2;
+        }
         if(!unlockedLight)
         {
             if (storyDialogueIndex < dialogueData.storyDialogue.Count)
@@ -106,6 +121,16 @@ public class ProspectorBros : MonoBehaviour
 
     private void ShowRandomDialogue()
     {
+        if (isCol1)
+        {
+            text.color = textcol1;
+            isCol1 = false;
+        }
+        else
+        {
+            text.color= textcol2;
+            isCol1 = true;
+        }
         if (dialogueData.randomDialogue.Count > 0)
         {
             string newDialogue = GetNewRandomDialogue();
@@ -132,6 +157,10 @@ public class ProspectorBros : MonoBehaviour
 
     public void EndInteraction()
     {
+        argumentText.SetActive(true);
+
+        offeringPurchase = false;
+        purchaseOptions.SetActive(false);
         speech.SetActive(false);
         resetDialogue = false;
         if (cardToShow != null)
@@ -152,8 +181,10 @@ public class ProspectorBros : MonoBehaviour
     private void PurchaseLight()
     {
         player.GetComponent<PlayerInventory>().RemoveMoney(lightCost);
+        player.GetComponent<Light2D>().enabled = true;
         offeringPurchase = false;
         text.text = dialogueData.purchaseSuccessful;
+        text.color = textcol1;
         unlockedLight = true;
         cardToShow = lightUnlockCard;
         purchaseOptions.SetActive(false);
@@ -163,6 +194,7 @@ public class ProspectorBros : MonoBehaviour
     {
         offeringPurchase = false;
         text.text = dialogueData.purchaseFailed;
+        text.color = textcol1;
         purchaseOptions.SetActive(false);
     }
 }

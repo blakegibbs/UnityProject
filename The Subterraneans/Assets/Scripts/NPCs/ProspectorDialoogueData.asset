@@ -44,6 +44,9 @@ MonoBehaviour:
     like a memory anymore. And the darker it gets, the more we become like them,
     hunting what we can, always searching, always hungry."
   storyDialogue:
+  - "Well now, look who\u2019s wanderin' into our camp! Name\u2019s Mac, and this
+    idiot here's my brother Jed. Ain\u2019t much gold left, but if you\u2019re lookin\u2019
+    for a place to rest your boots, you\u2019ve found the right spot."
   - "Well, well, looks like you\u2019re headed into that dark hole, huh? You might
     wanna take one of these lanterns off our hands before you get yourself lost in
     there. It\u2019s mighty dark in there, friend. And trust me, you ain't gonna
@@ -60,9 +63,9 @@ MonoBehaviour:
   unlockWallJump: 
   unlockLight: "What my brother means to say is... it\u2019s gonna be a rough go
     of it without a proper light. And, well, we got a spare here. No sense in you
-    trippin\u2019 over your own feet in the dark.\u201D \u201CA little light could
-    save you from the rats, or worse... the mines got a way of takin\u2019 people
-    by surprise, if you catch my drift"
+    trippin\u2019 over your own feet in the dark. A little light could save you from
+    the rats, or worse... the mines got a way of takin\u2019 people by surprise,
+    if you catch my drift"
   purchaseSuccessful: "It\u2019ll light up the cave just fine, if you don\u2019t
     mind the smell of it. You\u2019ll smell like an old miner by the time you come
     out, though."
