@@ -13,10 +13,10 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: BlakeGibbs
-  productName: 8BitProject
+  productName: The Subterraneans
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
-  m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
+  m_SplashScreenBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 1
   m_SplashScreenOverlayOpacity: 1
@@ -40,9 +40,9 @@ PlayerSettings:
     width: 1
     height: 1
   m_SplashScreenLogos:
-  - logo: {fileID: 6572424011785191364, guid: 9f12f839c46b8b14b8df505368d1dceb, type: 3}
+  - logo: {fileID: 2187288752748286106, guid: 1dfd1a7a206d41a4295c98d576376c0e, type: 3}
     duration: 2
-  m_VirtualRealitySplashScreen: {fileID: 2800000, guid: 18c2e3c3ae859354fa6f2088d03c9899, type: 3}
+  m_VirtualRealitySplashScreen: {fileID: 2800000, guid: fa4483382de3c2a4ab4f2ca9681f23b4, type: 3}
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1920
   defaultScreenHeight: 1080
@@ -289,7 +289,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 3bdb0d1c267137142bf08e709bb32f07, type: 3}
+      m_Icon: {fileID: 2800000, guid: 8c5d889a62c49cc48aaffa2d56f574c1, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
