@@ -15,7 +15,10 @@ public class UnlockAbility : MonoBehaviour
         if (collision.CompareTag("Unlock"))
         {
             Unlock unlock = collision.GetComponent<Unlock>();
-            collision.GetComponent<Animator>().SetTrigger("Interacted");
+            if(collision.GetComponent<Animator>() != null)
+            {
+                collision.GetComponent<Animator>().SetTrigger("Interacted");
+            }
             if (unlock != null && unlock.unlocks == Unlocks.DoubleJump && !collected1)
             {
                 PlayerMovement playerMovement = GetComponent<PlayerMovement>();
