@@ -24,7 +24,7 @@ public class Bartender : MonoBehaviour
     {
         if(cardActive)
         {
-            if(Input.GetKeyDown(KeyCode.Escape))
+            if(Input.GetKeyDown(KeyCode.E))
             {
                 doubleJumpUnlockCard.SetActive(false);
                 dashUnlockCard.SetActive(false);

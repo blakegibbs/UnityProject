@@ -32,7 +32,7 @@ public class ProspectorBros : MonoBehaviour
     {
         if (cardActive)
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 lightUnlockCard.SetActive(false);
                 PlayerMovement playerScript = player.GetComponent<PlayerMovement>();

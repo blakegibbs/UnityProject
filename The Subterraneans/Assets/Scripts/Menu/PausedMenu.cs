@@ -19,20 +19,19 @@ public class PausedMenu : MonoBehaviour
         // Toggle pause menu when pressing Escape
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            paused = !paused;
-            pauseMenu.SetActive(paused);
-
-            if (paused)
+            if (!pauseMenu.activeInHierarchy)
             {
+                pauseMenu.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 this.GetComponent<PlayerMovement>().ToggleMovementDisabled();
                 otherPlayer.GetComponent<PlayerMovement>().ToggleMovementDisabled();
                 Time.timeScale = 0f; // Freeze the game
+                paused = true;
             }
             else
             {
-                this.GetComponent<PlayerMovement>().ToggleMovementDisabled();
-                otherPlayer.GetComponent<PlayerMovement>().ToggleMovementDisabled();
-                Time.timeScale = 1f; // Resume the game
+                ResumeGame();
             }
         }
     }
@@ -45,9 +44,14 @@ public class PausedMenu : MonoBehaviour
 
     public void ResumeGame()
     {
-        paused = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         pauseMenu.SetActive(false); // Hide the pause menu
         Time.timeScale = 1f; // Resume the game time
+        this.GetComponent<PlayerMovement>().ToggleMovementDisabled();
+        otherPlayer.GetComponent<PlayerMovement>().ToggleMovementDisabled();
+        paused = false;
+        Debug.Log(paused);
     }
 
     public void ToggleFPSCounter()
