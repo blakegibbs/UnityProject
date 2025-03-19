@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private float vertical;
     [SerializeField] private float walkingSpeed = 8f;
     [SerializeField] private float jumpingPower = 16f;
-    [SerializeField] private float fallMultiplier = 2.5f;
+    public float fallMultiplier = 2.5f;
     [HideInInspector] public bool isFacingRight = true;
     private bool isMovementDisabled = false;
 
